@@ -13,7 +13,7 @@ class UpdateSeatsAvailableRoomTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 30; $i++) {
             $count = Seat::where("room_id", $i)->where("status", 1)->count();
             $room = Room::findOrFail($i)->update([
                 "seats_available" => $count

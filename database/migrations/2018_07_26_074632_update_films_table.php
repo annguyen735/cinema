@@ -27,8 +27,8 @@ class UpdateFilmsTable extends Migration
     public function down()
     {
         Schema::table('films', function (Blueprint $table) {
-            $table->float('avg_rating');
-            $table->integer('total_rating');            
+            $table->float('avg_rating')->change();
+            $table->integer('total_rating')->change();            
         });
     }
 }

@@ -21,7 +21,7 @@ class SeatTableSeeder extends Seeder
                         'room_id' => $roomIds[$k],
                         'x_seats' => $i,
                         'y_seats' => chr($j),
-                        'status' => rand(0,1)
+                        'status' => 1
                     ]);
                 }
             }

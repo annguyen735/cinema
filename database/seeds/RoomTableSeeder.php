@@ -13,11 +13,18 @@ class RoomTableSeeder extends Seeder
      */
     public function run()
     {
-        $cinemaIds = DB::table('cinemas')->pluck('id')->toArray();
-        $faker = Faker::create();
-        for ($i = 1; $i <= 20; $i++) {
+        $cityIDs = [2, 3, 4, 5, 6];
+        $cinemaIds = DB::table('cinemas')->whereIn("city_id", $cityIDs)->pluck('id')->toArray();
+        $j = 0;
+        for ($i = 1; $i <= 30; $i++) {
+            $k = $i%6; 
+            if ($k == 0 && $i != 30) {
+                $j++;
+                $k++;
+            } 
             factory(Room::class)->create([
-                'cinema_id' => $faker->randomElement($cinemaIds),
+                'cinema_id' => $cinemaIds[$j],
+                "name" => "Room " . $k
             ]);
         }
     }
