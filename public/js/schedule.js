@@ -2,31 +2,57 @@ $count = 0
 $start = []
 $end = []
 
-//change room
-$('#room_id').change(function() {
-    $('#time_start').val("")
-    $('#time_start').prop('disabled', true);
-    $('#time_finish').html('0')
-
-    if ($('#date-schedule').val() != '') {
-        $('#time_start').removeAttr('disabled')
-    }
-
-    $('#date-schedule').attr('data-room', $(this).val())
-    if ($('#date-schedule').val() != '') {
-        ajaxUpdateSchedule($('#date-schedule').val(), $('#date-schedule').attr('data-room'))
-        if ($('#time_start').val() != '') {
-            $from = $('#time_start').val().split(':')
-
-            $from = (parseInt($from[0]) - 8) * 60 + parseInt($from[1])
-            $to = $from + parseInt($('#time_limit').html().split(' '))
-
-            setTimeFinish($from, $to)
-
-            addSchedule($from, $to)
+//change cinema
+$("#cinema_id").change(function(){
+    // change list of rooms
+    $cinemaID = $(this).val()
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+        },
+        url: $baseURL + '/admin/rooms/' + $cinemaID + '/listRoom',
+        type: "GET",
+        dataType: 'json',
+        success: function($rooms) {
+            $('#room_id option').remove()
+            for ($i = 0; $i < $rooms['rooms'].length; $i++) {
+                $option = $('<option></option>')
+                $option.attr('value', $rooms['rooms'][$i]['id'])
+                $option.html($rooms['rooms'][$i]['name'])
+                $('#room_id').append($option)
+            }
+        },
+        error: function() {
+            console.log($baseURL + '/admin/rooms/' + $cinemaID + '/listRoom')
+            console.log("fail")
         }
-    }
-})
+    });
+    //change room
+    $('#room_id').change(function() {
+        $('#time_start').val("")
+        $('#time_start').prop('disabled', true);
+        $('#time_finish').html('0')
+
+        if ($('#date-schedule').val() != '') {
+            $('#time_start').removeAttr('disabled')
+        }
+
+        $('#date-schedule').attr('data-room', $(this).val())
+        if ($('#date-schedule').val() != '') {
+            ajaxUpdateSchedule($('#date-schedule').val(), $('#date-schedule').attr('data-room'))
+            if ($('#time_start').val() != '') {
+                $from = $('#time_start').val().split(':')
+
+                $from = (parseInt($from[0]) - 8) * 60 + parseInt($from[1])
+                $to = $from + parseInt($('#time_limit').html().split(' '))
+
+                setTimeFinish($from, $to)
+
+                addSchedule($from, $to)
+            }
+        }
+    });
+});
 
 // disabled time_start if date not choose
 if ($('#date-schedule').val() == '') {

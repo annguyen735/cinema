@@ -29,7 +29,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::resource('/cities', 'CityController');
 
     Route::resource('/cinemas', 'CinemaController');
-
+    Route::get('/cinemas/{cinema_id}/city', 'CinemaController@getListCinemabyCityId')->name('cinemas.showListByCityId');
+    
     Route::resource('/films', 'FilmController');
     Route::put('/films/{id}/updateActive', 'FilmController@updateActive')->name('films.updateActive');
     Route::post("/films/importFilms", "FilmController@importExcel")->name("films.import");
@@ -41,7 +42,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('/films/{id}/getData', 'FilmController@getData')->name('films.getData');
 
     Route::resource('/rooms', 'RoomController');
-    Route::get('/cinemas/{cinema_id}/city', 'CinemaController@getListCinemabyCityId')->name('cinemas.showListByCityId');
+    Route::get('/rooms/{cinema_id}/listRoom', "RoomController@listRoomByCinemaID");
+
+    
 });
 
 Route::group(['namespace' => 'User'], function () {

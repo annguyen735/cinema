@@ -22,9 +22,19 @@
               {!! csrf_field() !!}
 
               <div class="box-body">
+                <div class="form-group has-feedback {{ $errors->has('cinema_id') ? ' has-error' : '' }}">
+                    <label for="cinema_id">{{ __('Cinema') }}:</label>
+                    <select name="cinema_id" class="select" id="cinema_id">
+                        @foreach ($cinemas as $cinema)
+                        <option value="{{$cinema->id}}" {{ (old('cinema_id') == $cinema->id) ? 'selected' : '' }}>{{$cinema->name}}</option>
+                        @endforeach
+                    </select>
+                    <small class="text-danger">{{ $errors->first('room_id') }}</small>
+                  </div>
+
                 <div class="form-group has-feedback {{ $errors->has('room_id') ? ' has-error' : '' }}">
-                    <label for="room_id">{{ __('Room') }}:</label>
-                    <select name="room_id" class="select" id="room_id">
+                  <label for="room_id">{{ __('Room') }}:</label>
+                  <select name="room_id" class="select" id="room_id">
                       @foreach ($rooms as $room)
                       <option value="{{$room->id}}" {{ (old('room_id') == $room->id) ? 'selected' : '' }}>{{$room->name}}</option>
                       @endforeach

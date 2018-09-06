@@ -198,4 +198,18 @@ class RoomController extends Controller
             return redirect()->route('rooms.create', compact('check'));
         }
     }
+
+    /**
+     * Store a newly updated resource in storage.
+     *
+     * @param App\Models\Cinema $id 
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function listRoomByCinemaID($cinemaID)
+    {
+        if(request()->ajax()) {
+            return response()->json(['rooms' => Room::where('cinema_id', $cinemaID)->get()],200);
+        }
+    }
 }
