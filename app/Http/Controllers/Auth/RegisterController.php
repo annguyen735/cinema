@@ -92,7 +92,8 @@ class RegisterController extends Controller
             'image' => $fileName ,
             'birthday' => $data['birthday'],
             'access_token' => str_random(100),
-            'role' => $role
+            'role' => $role,
+            'city_id' => $data['city_id']
         ]);
     }
 

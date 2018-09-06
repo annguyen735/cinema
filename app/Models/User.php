@@ -41,7 +41,8 @@ class User extends Authenticatable
         'birthday',
         'role',
         'is_active',
-        'access_token'
+        'access_token',
+        'city_id'
     ];
 
     /**

@@ -104,9 +104,9 @@
                         <div class="form-group row">
                             <label for="city_id" class="col-md-4 col-form-label text-md-right">{{ __('Cities') }}</label>
                             <div class="col-md-6" id="sandbox-container">
-                                <select name="city_id" class="select">
+                                <select name="city_id" class="select" style="color:black; font-family:-webkit-pictographa">
                                     @foreach ($cities as $city)
-                                        <option value="{{$city->name}}" {{ (old('city_id') == $city->id) ? 'selected' : '' }}>{{$city->name}}</option>
+                                        <option value="{{$city->id}}" {{ (old('city_id') == $city->id) ? 'selected' : '' }}>{{$city->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
