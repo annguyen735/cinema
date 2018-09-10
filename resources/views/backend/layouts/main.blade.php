@@ -19,6 +19,10 @@
     @include('backend.layouts.partials.header')
     <!-- end header -->
 
+    <!-- start css -->
+    @yield('css')
+    <!-- end css -->
+
     <!-- start left-bar -->
     @include ('backend.layouts.partials.left-bar')
     <!-- end left-bar -->

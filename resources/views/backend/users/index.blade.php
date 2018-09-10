@@ -2,6 +2,66 @@
 
 @section('title', __('Users'))
 
+@section("css")
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+@endsection
+
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -42,6 +102,7 @@
                     <th>{{ __('Fullname') }}</th>
                     <th>{{ __('Birthday') }}</th>
                     <th>{{ __('Image') }}</th>
+                    <th>{{ __('City') }}</th>
                     @if (Auth::user()->role == App\Models\User::IS_ADMIN)
                     <th>{{ __('Is Active') }}</th>
                     <th>{{ __('Role') }}</th>
@@ -58,28 +119,17 @@
                         <td><a href="{{route('users.show', $user->access_token)}}">{{ $user->fullname }}</a></td>
                         <td>{{ \Carbon\Carbon::parse($user->birthday)->format('d-m-Y') }}</td>
                         <td class="text-center"><img style="width: 60px; height: 50px" {{$user->image ? $url = $user->image : $url = config('image.default_image')}} src="{{ asset($url) }}" alt=""></td>
-                    @if (Auth::user()->role == App\Models\User::IS_ADMIN)
+                        <td>{{ $user->city->name }}</td>
                         <td class="text-center">
-                          @if ($user->is_active == App\Models\User::IS_ACTIVE)
-                          <a href="#" id="active-{{$user->id}}" 
-                            class="btn-change-admin btn btn-warning" 
-                            data-title="{{__('Change Active')}}"
-                            data-content="{{__('Do you want to change is_active of <b>') . $user->fullname . '</b>'}}"
+                          <label class="switch">
+                            <input type="checkbox" 
+                            class="btn-change-admin"
                             data-token='{{$user->access_token}}' 
                             data-action="updateActive" 
-                            {{$user->role == \App\Models\User::IS_ADMIN && \Auth::user()->id != \App\Models\User::IS_ADMIN ? 'disabled' : 'data-toggle=modal data-target=#confirmModal'}}>
-                            Active
-                          </a>
-                          @else
-                          <a href="#" id="active-{{$user->id}}" 
-                            class="btn-change-admin btn btn-default" 
-                            data-title="{{__('Change Active')}}"
-                            data-content="{{__('Do you want to change is_active of <b>') . $user->fullname . '</b>'}}"
-                            data-token='{{$user->access_token}}' 
-                            data-action="updateActive" {{$user->role == \App\Models\User::IS_ADMIN && \Auth::user()->id != \App\Models\User::IS_ADMIN ? 'disabled' : 'data-toggle=modal data-target=#confirmModal'}}>
-                            Not
-                          </a>
-                          @endif                            
+                            {{$user->role == \App\Models\User::IS_ADMIN && \Auth::user()->id != \App\Models\User::IS_ADMIN ? 'disabled' : ''}}
+                            {{ $user->is_active == \App\Models\User::IS_ACTIVE ? 'checked' : ''}}>
+                            <span class="slider round" ></span>
+                          </label>
                         </td>
                         <td class="text-center">
                           @if ($user->role == App\Models\User::IS_ADMIN)
@@ -104,7 +154,6 @@
                             </a>
                           @endif                            
                         </td>
-                    @endif
                     <td class="text-center col-sm-1">
                         <a href="{{ \Auth::user()->id != App\Models\User::ID_MASTER && $user->id == App\Models\User::ID_MASTER ? '#' : route('users.edit', $user->access_token) }}"
                           class="glyphicon glyphicon-pencil bg-green option"></a>
