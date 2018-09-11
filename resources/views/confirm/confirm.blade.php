@@ -10,6 +10,8 @@
 					<a href="index.html"><img src="{{ asset('fe_images/logo.png') }}" alt="" /></a>
 					<p>Movie Theater</p>
 				</div>
+				@include("frontend.layouts.partials.login-register")
+
 				<div class="search v-search">
 					<form>
 						<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>

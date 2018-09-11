@@ -47,7 +47,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     
 });
 
-Route::group(['namespace' => 'User'], function () {
+Route::group(['namespace' => 'User', 'middleware' => 'user_active'], function () {
     Route::get('/', 'HomeFEController@index');
     
     Route::resource("/contact", "ContactFEController");
