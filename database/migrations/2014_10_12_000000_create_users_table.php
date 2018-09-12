@@ -24,6 +24,11 @@ class CreateUsersTable extends Migration
             $table->string('fullname', 100);
             $table->string('image')->nullable();
             $table->date('birthday');
+            $table->unsignedInteger('city_id');
+            $table->foreign('city_id')->references('id')
+                ->on('cities')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->tinyInteger('is_active')->default(0)->comment="1: active; 0:not";
             $table->tinyInteger('role')->default(0)->comment="1: admin; 0:user";
             $table->string('access_token');

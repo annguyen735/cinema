@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\City;
 use App\Models\User;
 use App\Jobs\SendMailJob;
 use Illuminate\Http\Request;
@@ -91,7 +92,8 @@ class RegisterController extends Controller
             'image' => $fileName ,
             'birthday' => $data['birthday'],
             'access_token' => str_random(100),
-            'role' => $role
+            'role' => $role,
+            'city_id' => $data['city_id']
         ]);
     }
 
@@ -115,6 +117,16 @@ class RegisterController extends Controller
         // }
 
         return redirect()->route('confirm.view');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.register', ['cities' => City::get()]);
     }
 
 }

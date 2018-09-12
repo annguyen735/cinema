@@ -41,7 +41,8 @@ class User extends Authenticatable
         'birthday',
         'role',
         'is_active',
-        'access_token'
+        'access_token',
+        'city_id'
     ];
 
     /**
@@ -95,5 +96,13 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
+    }
+
+    /**
+     * Get the city that owns the user.
+     */
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

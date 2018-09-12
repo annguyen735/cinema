@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\City;
 use App\Models\User;
 use App\Jobs\SendMailJob;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.index', ['users' => User::orderBy('id', 'DESC')->get()]);
+        return view('backend.users.index', ['users' => User::orderBy('id', 'DESC')->with("city")->get()]);
     }
 
     /**
@@ -30,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.users.create');
+        return view('backend.users.create', ['cities' => City::get()]);
     }
 
     /**
@@ -63,7 +64,8 @@ class UserController extends Controller
                 'image' => $fileName ,
                 'birthday' => $request->birthday,
                 'access_token' => str_random(100),
-                'role' => $role
+                'role' => $role,
+                'city_id' => $request->city_id
             ]);
             if ($result) {
                 $user = User::where('email', $request->email)->first();

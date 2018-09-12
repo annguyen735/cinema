@@ -18,7 +18,8 @@ class UpdateUserAdminSeeder extends Seeder
                 "fullname" => "An Nguyen Q.",
                 "birthday" => "1995-12-30",
                 "role" => 1,
-                "is_active" => 1
+                "is_active" => 1,
+                "city_id" => 2
             ]);
             User::orderBy("id", "DESC")->limit(1)->update([
                 "username" => "annguy",
@@ -26,7 +27,8 @@ class UpdateUserAdminSeeder extends Seeder
                 "fullname" => "An Nguyen",
                 "birthday" => "1995-11-09",
                 "role" => 1,
-                "is_active" => 1
+                "is_active" => 1,
+                "city_id" => 2
             ]);
     }
 }

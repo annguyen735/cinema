@@ -6,7 +6,7 @@ use Closure;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class UserActiveMiddleware
 {
     /**
      * Handle an incoming request.
@@ -26,6 +26,6 @@ class AdminMiddleware
             }
             return redirect()->route("confirm.view");            
         }
-        return redirect('/login');
+        return $next($request);
     }
 }

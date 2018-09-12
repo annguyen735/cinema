@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Film;
 use App\Models\Room;
+use App\Models\Cinema;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,11 +30,12 @@ class ScheduleController extends Controller
      */
     public function create()
     {
+        $cinemas = Cinema::get();
         $films = Film::orderBy('id', 'DESC')->get();
         $image = Film::orderBy('id', 'DESC')->first()->image;
-        $rooms = Room::get();
+        $rooms = Room::where("cinema_id", $cinemas->first()->id)->get();
         $timeLimit = Film::select('time_limit')->first();
-        return view("backend.schedules.create", compact(['films', 'rooms', 'timeLimit', 'image']));
+        return view("backend.schedules.create", compact(['films', 'rooms', 'timeLimit', 'image', "cinemas"]));
         
     }
 

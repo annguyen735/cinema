@@ -42,6 +42,7 @@ class FilmController extends Controller
     {
         $genre = implode(',', $request->genre);
         $kind = implode(',', $request->kind);
+        $fileName = "";
         try {
             if ($request->has('image') && $request->image != null) {
                 $image = $request->file('image');
@@ -69,7 +70,6 @@ class FilmController extends Controller
                 'total_rating' => 0,
                 'is_active' => Film::IS_ACTIVE
             ]);
-            
             $check = 1;
             return redirect()->route('films.index', compact('check'));
         } catch (QueryException $e) {

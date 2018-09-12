@@ -12,8 +12,11 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        $citiesID = DB::table('cities')->pluck('id')->toArray();
         for($i = 1; $i <= 20; $i++) {
-            factory(User::class, 1)->create();
+            factory(User::class, 1)->create([
+                "city_id" => $citiesID[$i]
+            ]);
         }
     }
 }
