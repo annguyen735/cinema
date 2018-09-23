@@ -8,6 +8,7 @@ use App\Models\Seat;
 use App\Models\Cinema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Backend\RoomRequest;
 use App\Http\Requests\Backend\UpdateRoomRequest;
@@ -21,7 +22,18 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::orderBy('id', 'DESC')->get();
+        $rooms = Room::orderBy('id', 'DESC');
+        $cinemaIDs = [];
+        if(Auth::user()->id != 1) {
+            $cityID = Auth::user()->city_id;
+            $cinemas = Cinema::select('id')->where("city_id", $cityID)->get();
+            
+            foreach ($cinemas as $cinema) {
+                array_push($cinemaIDs, $cinema->id);
+            }
+            $rooms = $rooms->whereIn("cinema_id", $cinemaIDs);
+        }
+        $rooms = $rooms->get();
         $arrAmount = [];
         foreach($rooms as $room) {
             $count = Seat::where("room_id", $room->id)->count();

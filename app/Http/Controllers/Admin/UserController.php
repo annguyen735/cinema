@@ -21,7 +21,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.index', ['users' => User::orderBy('id', 'DESC')->with("city")->get()]);
+        $users = User::orderBy('id', 'DESC')->with("city");
+        
+        if(Auth::user()->id != 1) {
+            $cityID = Auth::user()->city_id;
+            $users->where("city_id", $cityID);
+        }
+        $users = $users->get();
+
+        return view('backend.users.index', compact('users'));
     }
 
     /**

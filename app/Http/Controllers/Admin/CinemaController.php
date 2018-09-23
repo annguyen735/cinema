@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Cinema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Backend\CreateCinemaRequest;
 
@@ -18,7 +19,13 @@ class CinemaController extends Controller
      */
     public function index()
     {
-        $cinemas = Cinema::orderBy('id', 'DESC')->with('city')->get();
+        $cinemas = Cinema::orderBy('id', 'DESC')->with('city');
+        if(Auth::user()->id != 1) {
+            $cityID = Auth::user()->city_id;
+            $cinemas->where("city_id", $cityID);
+        }
+
+        $cinemas = $cinemas->get();
         return view('backend.cinemas.index', ['cinemas' => $cinemas]);
     }
 

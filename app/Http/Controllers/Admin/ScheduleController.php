@@ -8,6 +8,7 @@ use App\Models\Cinema;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Backend\ScheduleRequest;
 
@@ -20,7 +21,29 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view("backend.schedules.index", ['schedules' => Schedule::with(['room', 'film'])->orderBy('id', 'DESC')->get()]);
+        $schedules = Schedule::with(['room', 'film']);
+        $cinemaIDs = [];
+        $roomIDs = [];
+
+        if(Auth::user()->id != 1) {
+            $cityID = Auth::user()->city_id;
+            
+            $cinemas = Cinema::select('id', "name")->where("city_id", $cityID)->get();
+            foreach ($cinemas as $cinema) {
+                array_push($cinemaIDs, $cinema->id);
+            }
+            
+            $rooms = Room::whereIn("cinema_id", $cinemaIDs)->get();
+            foreach ($rooms as $room) {
+                array_push($roomIDs, $room->id);
+            }
+
+            $schedules = $schedules->whereIn("room_id", $roomIDs);
+        }
+
+        $schedules = $schedules->get();
+
+        return view("backend.schedules.index", ['schedules' => $schedules]);
     }
 
     /**
