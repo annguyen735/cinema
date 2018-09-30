@@ -23,6 +23,6 @@ class SendMailController extends Controller
         $user->update(['is_active' => User::IS_ACTIVE]);
         Auth::guard()->login($user);
 
-        return redirect()->route('home');
+        return redirect('/');
     }
 }

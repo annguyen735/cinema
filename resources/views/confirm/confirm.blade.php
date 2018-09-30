@@ -11,7 +11,7 @@
 					<p>Movie Theater</p>
 				</div>
 				@include("frontend.layouts.partials.login-register")
-
+				{{\Auth::logout()}}
 				<div class="search v-search">
 					<form>
 						<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
