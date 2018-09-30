@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-@section('title', __('HomePage'))
+@section('title', __('Contact'))
 
 @section('content')
 <div class="header">

@@ -55,4 +55,6 @@ Route::group(['namespace' => 'User', 'middleware' => 'user_active'], function ()
     Route::resource("/reviews", "ReviewFEController");
 
     Route::get("/videos", "FilmFEController@index");
+
+    Route::resource("/films/detail",  "DetailFilmFEController");
 });

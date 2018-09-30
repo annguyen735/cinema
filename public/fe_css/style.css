@@ -2233,3 +2233,15 @@ font-weight: 700;
 .login-register {
 	margin: 1%;
 }
+
+.loading-more{
+	font-weight: 600;
+    font-style: italic;
+    font-size: 20px;
+    color: #dfb636;
+    text-decoration: none;
+    text-align: center;
+}
+.loading-more:hover {
+	color: blue;
+}
