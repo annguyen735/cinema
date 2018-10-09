@@ -67,10 +67,7 @@
 									  </select>
 									</div>
 									<div class="rtm text-center">
-										<a href="#">REVIEW THIS MOVIE</a>
-									</div>
-									<div class="wt text-center">
-										<a href="#">WATCH THIS TRAILER</a>
+										<a href="{{ route('films.show', 1) }}">REVIEW THIS MOVIE</a>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -128,9 +125,6 @@
 									<div class="rtm text-center">
 										<a href="#">REVIEW THIS MOVIE</a>
 									</div>
-									<div class="wt text-center">
-										<a href="#">WATCH THIS TRAILER</a>
-									</div>
 									<div class="clearfix"></div>
 								</div>
 								<p class="info">CAST:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
@@ -186,9 +180,6 @@
 									</div>
 									<div class="rtm text-center">
 										<a href="#">REVIEW THIS MOVIE</a>
-									</div>
-									<div class="wt text-center">
-										<a href="#">WATCH THIS TRAILER</a>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -246,9 +237,6 @@
 									<div class="rtm text-center">
 										<a href="#">REVIEW THIS MOVIE</a>
 									</div>
-									<div class="wt text-center">
-										<a href="#">WATCH THIS TRAILER</a>
-									</div>
 									<div class="clearfix"></div>
 								</div>
 								<p class="info">CAST:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
@@ -304,9 +292,6 @@
 									</div>
 									<div class="rtm text-center">
 										<a href="#">REVIEW THIS MOVIE</a>
-									</div>
-									<div class="wt text-center">
-										<a href="#">WATCH THIS TRAILER</a>
 									</div>
 									<div class="clearfix"></div>
 								</div>

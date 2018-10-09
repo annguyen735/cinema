@@ -47,13 +47,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adm
 });
 
 Route::group(['namespace' => 'User', 'middleware' => 'auto_logout'], function () {
-    Route::get('/', 'HomeFEController@index');
+    Route::get('/', 'HomeFEController@index')->name("homepage");
     
     Route::resource("/contact", "ContactFEController");
   
     Route::resource("/reviews", "ReviewFEController");
 
-    Route::get("/videos", "FilmFEController@index");
-
-    Route::resource("/films/detail",  "DetailFilmFEController");
+    Route::resource("/films", "FilmFEController");
 });

@@ -46,7 +46,7 @@ class FilmFEController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("frontend.details.index");
     }
 
     /**
