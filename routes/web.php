@@ -14,12 +14,11 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('admin');
 Route::get('confirm', function () {
     return view('confirm.confirm');
 })->name('confirm.view');
 Route::get('/users/{accessToken}/register', 'Admin\SendMailController@confirmRegistation')->name('register.confirm');
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['admin', 'auto_logout']], function () {
     Route::get('/', 'HomeController@index')->name('home.index');
 
     Route::resource('/users', 'UserController');
@@ -47,7 +46,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     
 });
 
-Route::group(['namespace' => 'User', 'middleware' => 'user_active'], function () {
+Route::group(['namespace' => 'User', 'middleware' => 'auto_logout'], function () {
     Route::get('/', 'HomeFEController@index');
     
     Route::resource("/contact", "ContactFEController");
