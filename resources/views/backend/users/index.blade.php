@@ -123,7 +123,7 @@ input:checked + .slider:before {
                         <td class="text-center">
                           <label class="switch">
                             <input type="checkbox" 
-                            class="btn-change-admin"
+                            class="btn-change-active"
                             data-token='{{$user->access_token}}' 
                             data-action="updateActive" 
                             {{$user->role == \App\Models\User::IS_ADMIN && \Auth::user()->id != \App\Models\User::IS_ADMIN ? 'disabled' : ''}}

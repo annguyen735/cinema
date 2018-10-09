@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Room;
 use App\Models\Seat;
+use App\Models\Cinema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SeatController extends Controller
 {
@@ -14,16 +16,36 @@ class SeatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $seats = Seat::with('room');
-        if (request()->has('room_id') && request()->room_id != '') {
-            $seats = $seats->where('room_id', request()->room_id);
+        $cinemaIDs = [];
+        $roomIDs = [];
+
+        if(Auth::user()->id != 1) {
+            $cityID = Auth::user()->city_id;
+            $cinemas = Cinema::select('id', "name")->where("city_id", $cityID)->get();
+            if (request()->has('room_id') && request()->room_id != '') {
+                $seats = $seats->where('room_id', request()->room_id);
+            } else {
+                foreach ($cinemas as $cinema) {
+                    array_push($cinemaIDs, $cinema->id);
+                }
+                $rooms = Room::whereIn("cinema_id", $cinemaIDs)->get();
+                
+                foreach ($rooms as $room) {
+                    array_push($roomIDs, $room->id);
+                }
+                
+                $seats = $seats->whereIn("room_id", $roomIDs);
+            }
+        } else {
+            $cinemas = Cinema::select('id', "name")->get();
         }
-        $seats = $seats->orderBy('id', 'DESC')->paginate(10);
+        $seats = $seats->get();
         return view('backend.seats.index', [
             'seats' => $seats,
-            'rooms' => Room::orderBy('id', 'DESC')->get()
+            'cinemas' => $cinemas
         ]);
     }
 

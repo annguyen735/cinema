@@ -37,10 +37,15 @@
                   <form action="{{ route('seats.index') }}" method="GET">
                     @csrf
                     <label>{{ __('Room') }}:</label>
-                    <select name="room_id" class="select">
+                    <select name="room_id" class="select room_id">
                         <option value="">All</option>
-                        @foreach ($rooms as $room)
-                          <option value="{{$room->id}}" {{ (old('room_id', request()->room_id) == $room->id) ? 'selected' : '' }}>{{$room->name}}</option>
+                        @foreach ($cinemas as $cinema)
+                        <optgroup label="{{$cinema->name}}">
+                          {{$rooms = $cinema->rooms}}
+                          @foreach ($rooms as $room)
+                            <option value="{{$room->id}}" {{ (old('room_id', request()->room_id) == $room->id) ? 'selected' : '' }}>{{$room->name}}</option>
+                          @endforeach
+                        </optgroup>
                         @endforeach
                     </select>
 
@@ -124,20 +129,6 @@
                 </div>
                 <!-- /.pagination -->
                 <section>
-                  <div class="filter create-area pull-left">
-                    <form action="{{ route('seats.index') }}" method="GET">
-                      @csrf
-                      <label>{{ __('Room') }}:</label>
-                      <select name="room_id" class="select">
-                          @foreach ($rooms as $room)
-                            <option value="{{$room->id}}" {{ (old('room_id') == $room->id) ? 'selected' : '' }}>{{$room->name}}</option>
-                          @endforeach
-                      </select>
-  
-                      <button type="submit">Filter</button>
-                    </form>
-                  </div>
-
                   <div class="create-area pull-right">
                     <a href="{{route('seats.create')}}" class="btn btn-primary glyphicon glyphicon-plus create-city"></a>
                   </div>
@@ -150,5 +141,8 @@
       </section>
   </div>
   <!-- /.content-wrapper -->
+@endsection
+@section("script")
+<script src="{{asset('js/seat.js')}}"></script>
 @endsection
 
