@@ -45,13 +45,11 @@
 								<p class="dirctr"><a href="">Reagan Gavin Rasquinha, </a>TNN, Mar 12, 2015, 12.47PM IST</p>
 								<div class="clearfix"></div>
 								<div class="yrw">
-									<!-- <div class="rtm text-center">
-										<a href="#">REVIEW</a>
-									</div> -->
-									<div class="wt text-center">
-										<a href="#">TRAILER</a>
+									<div id="small-dialog" class="mfp-hide">
+										<iframe  src="https://www.youtube.com/embed/2LqzF5WauAw" frameborder="0" allowfullscreen style="width:400px; height:300px"></iframe>
 									</div>
-									<div class="clearfix"></div>
+									
+									<!-- <div class="clearfix"></div> -->
 								</div>
 								<p class="info">CAST:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
 								<p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
@@ -82,7 +80,7 @@
 				</div>
 				<div class="clearfix"></div>
 		    </div>
-			<div class="comments-section-grids">
+			<div class="comments-section-grids" id="comment-section">
 				<div class="comments-section-grid">
 					<div class="col-md-2 comments-section-grid-image">
 						<img src="{{ asset('fe_images/eye-brow.jpg') }}" class="img-responsive" alt="" />
@@ -91,8 +89,6 @@
 						<h4><a href="#">MARWA ELGENDY</a></h4>
 						<label>5/4/2014 at 22:00   </label>
 						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound but because those who do not know how to pursue pleasure rationally encounter consequences.</p>
-						<span><a href="#">Reply</a></span>
-						<i class="rply-arrow"></i>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -105,15 +101,13 @@
 						<h4><a href="#">MARWA ELGENDY</a></h4>
 						<label>5/4/2014 at 22:00   </label>
 						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound but because those who do not know how to pursue pleasure rationally encounter consequences.</p>
-						<span><a href="#">Reply</a></span>
-						<i class="rply-arrow"></i>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				
-				<div class="comments-section-grid">
-					<a href="#"><span class="loading-more">Loading more</span></a>
-				</div>
+			</div>
+			<div class="comments-section-grid">
+				<a href="#"><span class="loading-more">Loading more</span></a>
 			</div>
 	    </div>
 	  <!-- comments-section-ends -->
@@ -124,9 +118,7 @@
 				  </div>
 			  </div> 
 			<div class="blog-form">
-			    <form>
-					<input type="text" class="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Comment';}">
-			    </form>
+				<input type="text" class="create-comment" value="" placeholder="Enter your comment" user-img="{{ asset('fe_images/eye-brow.jpg') }}" fullname="An Nguyen Q.">
 			 </div>
 		  </div>
 		  </div>
@@ -329,4 +321,24 @@
         });
 </script>
 <script type="text/javascript" src="{{asset('fe_js/jquery.flexisel.js')}}"></script>	
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{{asset('fe_js/jquery.magnific-popup.js')}}" type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+		$('.popup-with-zoom-anim').magnificPopup({
+			type: 'inline',
+			fixedContentPos: false,
+			fixedBgPos: true,
+			overflowY: 'auto',
+			closeBtnInside: true,
+			preloader: false,
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-zoom-in'
+		});
+	});
+</script>	
+<script src="{{ asset('fe_js/comment.js') }}"></script>	
 @endsection
+

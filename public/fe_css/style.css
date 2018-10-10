@@ -2245,3 +2245,7 @@ font-weight: 700;
 .loading-more:hover {
 	color: blue;
 }
+
+.comments-section-grid-text p {
+	font-size: 15px
+}
