@@ -54,4 +54,6 @@ Route::group(['namespace' => 'User', 'middleware' => 'auto_logout'], function ()
     Route::resource("/reviews", "ReviewFEController");
 
     Route::resource("/films", "FilmFEController");
+
+    Route::get("/films/{id_films}/booking", "FilmFEController@booking")->name("films.booking");
 });
