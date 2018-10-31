@@ -15,8 +15,12 @@ class SeatTableSeeder extends Seeder
     {
         $roomIds = DB::table('rooms')->pluck('id')->toArray();
         for ($k = 0; $k < count($roomIds); $k++) {
-            for ($j = 65; $j <= 75; $j++) {
-                for ($i = 1; $i <= 15; $i++) {
+            for ($j = 65; $j < 74; $j++) {
+                for ($i = 1; $i <= 10; $i++) {
+                     $arr = [1,2,9,10];
+                    if ($j == 73 && in_array($i, $arr)) {
+                        continue;
+                    }
                     factory(Seat::class)->create([
                         'room_id' => $roomIds[$k],
                         'x_seats' => $i,

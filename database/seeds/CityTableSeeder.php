@@ -13,12 +13,6 @@ class CityTableSeeder extends Seeder
     public function run()
     {
         $cityArr = [
-            "Cần Thơ",
-            "Đà Nẵng",
-            "Hải Phòng",
-            "Hà Nội",
-            "TP HCM",
-            "Thừa Thiên Huế",
             "An Giang",
             "Bà Rịa - Vũng Tàu",
             "Bắc Giang",
@@ -32,6 +26,8 @@ class CityTableSeeder extends Seeder
             "Bình Thuận",
             "Cà Mau",
             "Cao Bằng",
+            "Cần Thơ",
+            "Đà Nẵng",
             "Đắk Lắk",
             "Đắk Nông",
             "Điện Biên",
@@ -40,6 +36,8 @@ class CityTableSeeder extends Seeder
             "Gia Lai",
             "Hà Giang",
             "Hà Tĩnh",
+            "Hà Nội",
+            "Hải Phòng",
             "Hải Dương",
             "Hậu Giang",
             "Hòa Bình",
@@ -57,6 +55,7 @@ class CityTableSeeder extends Seeder
             "Ninh Bình",
             "Ninh Thuận",
             "Phú Thọ",
+            "Phú Yên",
             "Quảng Bình",
             "Quảng Nam",
             "Quảng Ngãi",
@@ -68,13 +67,14 @@ class CityTableSeeder extends Seeder
             "Thái Bình",
             "Thái Nguyên",
             "Thanh Hóa",
+            "TP HCM",
+            "Thừa Thiên Huế",
             "Tiền Giang",
             "Trà Vinh",
             "Tuyên Quang",
             "Vĩnh Long",
             "Vĩnh Phúc",
             "Yên Bái",
-            "Phú Yên"
         ];
         for($i = 0; $i < 62; $i++) {
             City::create([

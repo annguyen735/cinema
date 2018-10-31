@@ -14,15 +14,15 @@ class CinemaTableSeeder extends Seeder
      */
     public function run()
     {
-        $cityIds = DB::table('cities')->pluck('id')->toArray();
+        $cityIds = [9, 15, 24, 25, 55, 56];
         $faker = Faker::create();
-        for ($i = 0; $i <= 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $cityID = $faker->randomElement($cityIds);
             $cityName =City::where("id", $cityID)->get();
             $cityName = $cityName->toArray()[0]["name"];
             factory(Cinema::class)->create([
                 'city_id' => $cityID,
-                "name" => "Best Film Cinema " . $cityName
+                "name" => "Best Film Cinema " . $cityName . " " . $i
             ]);
         }
     }

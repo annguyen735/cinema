@@ -53,7 +53,12 @@ Route::group(['namespace' => 'User', 'middleware' => 'auto_logout'], function ()
   
     Route::resource("/reviews", "ReviewFEController");
 
-    Route::resource("/films", "FilmFEController");
+    Route::resource("/videos", "FilmFEController");
 
     Route::get("/films/{id_films}/booking", "FilmFEController@booking")->name("films.booking");
+    Route::get("/cities/available", "CityController@showCityHaveCinema")->name("cities.available");
+
+    Route::get("/cinemas", "CinemaController@index")->name("cinemasFE.index");
+
+    Route::get("/schedules", "ScheduleController@index")->name("scheduleFE.index");
 });

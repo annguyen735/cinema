@@ -12,6 +12,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Cinema Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
 		
 		<!-- laravel header -->
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -54,6 +55,8 @@
 		<!-- custom script -->
 		<script src="{{ asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.js') }}"></script>
 		<script src="{{ asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+		<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
 		<script src="{{ asset('fe_js/main.js') }}"></script>
     	<!-- end js -->
 	</div>
