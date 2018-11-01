@@ -56,7 +56,9 @@
 		<script src="{{ asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.js') }}"></script>
 		<script src="{{ asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 		<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
+		<script src="{{ asset('bower_components/moment/min/moment.min.js') }}"></script>
+		<script src="{{ asset('bower_components/moment/min/moment-with-locales.min.js') }}"></script>
+		<script src="{{ asset('bower_components/moment/min/moment-with-locales.js') }}"></script>
 		<script src="{{ asset('fe_js/main.js') }}"></script>
     	<!-- end js -->
 	</div>
