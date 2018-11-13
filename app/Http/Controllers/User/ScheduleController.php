@@ -18,24 +18,20 @@ class ScheduleController extends Controller
     public function index()
     {
         $idFilm = request()->input("id_film");
-        $cityID = request()->input("id_city");
+        $cinemaID = request()->input("id_cinema");
         
-        $cinemas = Cinema::select('id')->where("city_id", $cityID)->get();
-        $listSchedules = []; 
-        foreach ($cinemas as $cinema) {
-            $roomIDs = Room::select("id")->where("cinema_id", $cinema->id)->get();
-            $arrRoomIDs = [];
-            foreach ($roomIDs as $roomID) {
-                array_push($arrRoomIDs, $roomID->id);
-            }
-            // \DB::connection()->enableQueryLog();
-            $schedule = Schedule::where("film_id", $idFilm)->whereIn("room_id",$arrRoomIDs)->where("time_start", ">=", date("H:i"))->get()->toArray();
-            // dd(\DB::getQueryLog());
-           array_push($listSchedules, $schedule);
+        $schedules;
+        $arrRoomID = [];
+        $roomIDs = Room::select("id")->where("cinema_id", $cinemaID)->get();
+        foreach ($roomIDs as $roomID) {
+            array_push($arrRoomID, $roomID->id);
         }
+        // \DB::connection()->enableQueryLog();
+        $schedules = Schedule::where("film_id", $idFilm)->whereIn("room_id",$arrRoomID)->where("time_start", ">=", date("H:i"))->with("room")->get()->toArray();
+        // dd(\DB::getQueryLog());
         
         if (request()->ajax()) {
-            return response()->json(["schedules" => $listSchedules]);
+            return response()->json(["schedules" => $schedules]);
         }
     }
 }

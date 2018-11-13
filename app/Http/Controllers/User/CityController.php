@@ -15,7 +15,8 @@ class CityController extends Controller
      */
     public function showCityHaveCinema()
     {
-        $result = City::select("cities.id","cities.name")->distinct()->join("cinemas", "cities.id", "cinemas.city_id")->get();
+        $dateTime = request()->input('dateTime');
+        $result = City::select("cities.id","cities.name")->distinct()->join("cinemas", "cities.id", "cinemas.city_id")->where("cities.created_at","<=", $dateTime)->get();
         if ($result) {
             return response()->json(['cities' => $result]);
         }
