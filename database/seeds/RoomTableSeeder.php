@@ -13,19 +13,15 @@ class RoomTableSeeder extends Seeder
      */
     public function run()
     {
-        $cityIDs = [2, 3, 4, 5, 6];
-        $cinemaIds = DB::table('cinemas')->whereIn("city_id", $cityIDs)->pluck('id')->toArray();
+        $cinemaIds = DB::table('cinemas')->pluck('id')->toArray();
         $j = 0;
-        for ($i = 1; $i <= 30; $i++) {
-            $k = $i%6; 
-            if ($k == 0 && $i != 30) {
-                $j++;
-                $k++;
-            } 
-            factory(Room::class)->create([
-                'cinema_id' => $cinemaIds[$j],
-                "name" => "Room " . $k
-            ]);
+        for ($i = 0; $i < 10; $i++) {
+            for ($h = 0; $h < 5; $h++) {
+                factory(Room::class)->create([
+                    'cinema_id' => $cinemaIds[$i],
+                    "name" => "Room " . ($h + 1)
+                ]);
+            }
         }
     }
 }

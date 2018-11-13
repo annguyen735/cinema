@@ -27,8 +27,8 @@ class CreateSchedulesTable extends Migration
                 ->on('films')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('time_start');
-            $table->string('time_finish');
+            $table->time('time_start');
+            $table->time('time_finish');
             $table->date('date');
             $table->timestamps();
             $table->softDeletes();            

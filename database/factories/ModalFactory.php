@@ -49,3 +49,7 @@ $factory->define(App\Models\Room::class, function (Faker $faker) {
 $factory->define(App\Models\Seat::class, function (Faker $faker) {
     return [];
 });
+
+$factory->define(App\Models\Schedule::class, function (Faker $faker) {
+    return [];
+});

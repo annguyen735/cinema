@@ -19,7 +19,7 @@ class UpdateUserAdminSeeder extends Seeder
                 "birthday" => "1995-12-30",
                 "role" => 1,
                 "is_active" => 1,
-                "city_id" => 2
+                "city_id" => 15
             ]);
             User::orderBy("id", "DESC")->limit(1)->update([
                 "username" => "annguy",
@@ -28,7 +28,7 @@ class UpdateUserAdminSeeder extends Seeder
                 "birthday" => "1995-11-09",
                 "role" => 1,
                 "is_active" => 1,
-                "city_id" => 2
+                "city_id" => 15
             ]);
     }
 }
