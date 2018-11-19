@@ -42,7 +42,7 @@
 			
 						
 				<button class="checkout-button">Book Now</button>	
-                <button type="button" class="checkout-button btn btn-warning pull-right">Back</button>
+                <button type="button" class="checkout-button btn btn-warning pull-right" onclick="history.back();">Back</button>
 				<div id="legend"></div>
             </div>
 			<div style="clear:both"></div>

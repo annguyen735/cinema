@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-@section('title', __('Booking Films'))
+@section('title', __('Film Detail'))
 
 @section('content')
 <div class="header">
@@ -20,19 +20,19 @@
 	</div>
 </div>
 <div class="single-content">
-			<div class="top-header span_top">
-				<div class="logo">
-					<a href="index.html"><img src="{{asset('fe_images/logo.png') }}" alt="" /></a>
-					<p>Movie Theater</p>
-				</div>
-				<div class="search v-search">
-					<form>
-						<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						<input type="submit" value="">
-					</form>
-				</div>
-				<div class="clearfix"></div>
+		<div class="top-header span_top">
+			<div class="logo">
+				<a href="index.html"><img src="{{asset('fe_images/logo.png') }}" alt="" /></a>
+				<p>Movie Theater</p>
 			</div>
+			<div class="search v-search">
+				<form>
+					<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+					<input type="submit" value="">
+				</form>
+			</div>
+			<div class="clearfix"></div>
+		</div>
 			<div class="reviews-section">
 				<h3 class="head">Movie</h3>
 					<div class="col-md-9 reviews-grids">
@@ -55,7 +55,12 @@
 								<p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
 								<p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Crime</p>
 								<p class="info">DURATION:&nbsp;&nbsp;&nbsp; &nbsp; 1 hour 45 minutes</p>
-								<a href="#" class="book" style="width:35%"><i class="book"></i>BOOK TICKET</a>
+								@include("frontend.details.partials.booking-ticket")
+								@if (\Auth::check())
+								<a href="#booking-ticket" class="book book-ticket" data-toggle="modal" style="width:35%"><i class="book book-ticket"></i>BOOK TICKET</a>
+								@else 
+								<a href="{{ route('login') }}" class="btn btn-danger">You must Login to Booking Ticket</a>
+								@endif
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -63,15 +68,15 @@
 							<h3>Lorem Ipsum IS A TENSE, TAUT, COMPELLING THRILLER</h3>
 							<p>STORY:<i> Meera and Arjun drive down Lorem Ipsum - can they survive a highway from hell?</i></p>
 						</div>
-							<div class="best-review">
-								<h4>Best Reader's Review</h4>
-								<p>Excellent Movie and great performance by Lorem, one of the finest thriller of recent  like Aldus PageMaker including versions of Lorem Ipsum.</p>
-								<p><span>Neeraj Upadhyay (Noida)</span> 16/03/2015 at 12:14 PM</p>
-							</div>
-							<div class="story-review">
-								<h4>REVIEW:</h4>
-								<p>So,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-							</div>
+						<div class="best-review">
+							<h4>Best Reader's Review</h4>
+							<p>Excellent Movie and great performance by Lorem, one of the finest thriller of recent  like Aldus PageMaker including versions of Lorem Ipsum.</p>
+							<p><span>Neeraj Upadhyay (Noida)</span> 16/03/2015 at 12:14 PM</p>
+						</div>
+						<div class="story-review">
+							<h4>REVIEW:</h4>
+							<p>So,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						</div>
 							<!-- comments-section-starts -->
 	    <div class="comments-section">
 	        <div class="comments-section-head">
@@ -118,7 +123,8 @@
 				  </div>
 			  </div> 
 			<div class="blog-form">
-				<input type="text" class="create-comment" value="" placeholder="Enter your comment" user-img="{{ asset('fe_images/eye-brow.jpg') }}" fullname="An Nguyen Q.">
+				
+				<input type="text" class="create-comment" value="" placeholder="{{!\Auth::check() ? 'You must login to comment' : 'Enter your comment'}}" user-img="{{ asset('fe_images/eye-brow.jpg') }}" fullname="An Nguyen Q." {{ \Auth::check() ? '' :'disabled'}}>
 			 </div>
 		  </div>
 		  </div>
