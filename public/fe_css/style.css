@@ -2338,3 +2338,13 @@ clear: both;
 #booking-ticket .modal-content .modal-body .schedule-event:hover{
 	border: 1px solid #ead36b; 
 }
+
+.comments-option {
+	font-size: 3em;
+	color: #000;
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;  
+}

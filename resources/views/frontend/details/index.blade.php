@@ -92,6 +92,7 @@
 					</div>
 					<div class="col-md-10 comments-section-grid-text">
 						<h4><a href="#">MARWA ELGENDY</a></h4>
+						<button type="button" class="pull-right comments-option"><span>...</span></button>
 						<label>5/4/2014 at 22:00   </label>
 						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound but because those who do not know how to pursue pleasure rationally encounter consequences.</p>
 					</div>
@@ -104,6 +105,7 @@
 					</div>
 					<div class="col-md-10 comments-section-grid-text">
 						<h4><a href="#">MARWA ELGENDY</a></h4>
+						<button type="button" class="pull-right comments-option"><span>...</span></button>
 						<label>5/4/2014 at 22:00   </label>
 						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound but because those who do not know how to pursue pleasure rationally encounter consequences.</p>
 					</div>
@@ -123,8 +125,7 @@
 				  </div>
 			  </div> 
 			<div class="blog-form">
-				
-				<input type="text" class="create-comment" value="" placeholder="{{!\Auth::check() ? 'You must login to comment' : 'Enter your comment'}}" user-img="{{ asset('fe_images/eye-brow.jpg') }}" fullname="An Nguyen Q." {{ \Auth::check() ? '' :'disabled'}}>
+				<input type="text" class="create-comment" value="" placeholder="{{!\Auth::check() ? 'You must login to comment' : 'Enter your comment'}}" user-img="{{ \Auth::check() ? \Auth::user()->image ? \Auth::user()->image : 'no-image.png' : ''}}" fullname="{{ \Auth::check() ? \Auth::user()->fullname : ''}}" {{ \Auth::check() ? '' :'disabled'}} user-id="{{  \Auth::check() ? Auth::user()->id : ''}}">
 			 </div>
 		  </div>
 		  </div>
