@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Film;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,7 +48,9 @@ class FilmFEController extends Controller
      */
     public function show($id)
     {
-        return view("frontend.details.index");
+        $film = Film::findOrFail($id);
+        $comments = Comment::where("film_id", $id)->with("user")->get();
+        return view("frontend.details.index", ["film" => $film, "comments" =>$comments]);
     }
 
     /**
