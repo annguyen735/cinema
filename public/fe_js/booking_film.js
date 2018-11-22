@@ -140,7 +140,6 @@ function ajaxCinema(idCity) {
         success : function ($result) {
             $('.modal-cinema').html("")
             let div
-            console.log($result['cinemas'].length)
             for (i = 0; i < $result['cinemas'].length; i++) {
                 div = $('<div class="cinema-event"></div>')
                 h3 = $("<h3>"+ $result['cinemas'][i]['name'] +"</h3>")
@@ -176,7 +175,7 @@ function ajaxCinemaScheduleTime(idCinema, idFilm, div) {
                 let ul = $('<ul></ul>')
                 for (i = 0; i < $result['schedules'].length; i++) {
                     let li = $('<li class="schedule-event"></li>')
-                    route = '/films/'+$result["schedules"][i]["film_id"]+'/booking'
+                    route = '/films/'+$result["schedules"][i]["film_id"]+'/'+$result["schedules"][i]["id"]+'/booking'
                     a = $("<a href="+route+"></a>")
                     span1 = $("<span >"+ $result["schedules"][i]["time_start"].slice(0,5) +"</span>")
                     br = $("<br>")

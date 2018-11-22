@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class CommentController extends Controller
 {
@@ -26,7 +28,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request = Input::all(); 
+        $result = Comment::create([
+            "user_id" => $request["id_user"],
+            "film_id" => $request["id_film"],
+            "content" => $request["content"],
+        ]);
+        if ($result) {
+            return response()->json(['code' => 200]);
+        }
+        
     }
 
     /**
