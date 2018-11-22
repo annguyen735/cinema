@@ -41,8 +41,7 @@
 								<a href="single.html"><img src="{{ asset('fe_images/r4.jpg') }}" alt="" /></a>
 							</div>
 							<div class="review-info">
-								<a class="span" href="single.html">Lorem  <i>Movie Review</i></a>
-								<p class="dirctr"><a href="">Reagan Gavin Rasquinha, </a>TNN, Mar 12, 2015, 12.47PM IST</p>
+								<h3><b>{{$film->name}}</b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="border-radius:8px; background-color:red; color:white; padding:10px;">{{$film->year}}</i></h3>
 								<div class="clearfix"></div>
 								<div class="yrw">
 									<div id="small-dialog" class="mfp-hide">
@@ -51,10 +50,11 @@
 									
 									<!-- <div class="clearfix"></div> -->
 								</div>
-								<p class="info">CAST:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
-								<p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
-								<p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Crime</p>
-								<p class="info">DURATION:&nbsp;&nbsp;&nbsp; &nbsp; 1 hour 45 minutes</p>
+								<p class="info">Actor:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$film->actor}}</p>
+								<p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;{{$film->author}}</p>
+								<p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$film->genre}}</p>
+								<p class="info">DURATION:&nbsp;&nbsp;&nbsp; &nbsp; {{$film->time_limit}} minutes</p>
+								<p class="info">Kind:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$film->kind}} </p>
 								@include("frontend.details.partials.booking-ticket")
 								@if (\Auth::check())
 								<a href="#booking-ticket" class="book book-ticket" data-toggle="modal" style="width:35%"><i class="book book-ticket"></i>BOOK TICKET</a>
@@ -64,56 +64,37 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="single">
-							<h3>Lorem Ipsum IS A TENSE, TAUT, COMPELLING THRILLER</h3>
-							<p>STORY:<i> Meera and Arjun drive down Lorem Ipsum - can they survive a highway from hell?</i></p>
-						</div>
-						<div class="best-review">
-							<h4>Best Reader's Review</h4>
-							<p>Excellent Movie and great performance by Lorem, one of the finest thriller of recent  like Aldus PageMaker including versions of Lorem Ipsum.</p>
-							<p><span>Neeraj Upadhyay (Noida)</span> 16/03/2015 at 12:14 PM</p>
-						</div>
+						<br> <br>
 						<div class="story-review">
-							<h4>REVIEW:</h4>
-							<p>So,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+							<h4>DICRIPTION:</h4>
+							<p>{{$film->content}}</p>
 						</div>
 							<!-- comments-section-starts -->
 	    <div class="comments-section">
 	        <div class="comments-section-head">
 				<div class="comments-section-head-text">
-					<h3>25 Comments</h3>
+					<h3>{{count($comments)}} Comments</h3>
 				</div>
 				<div class="clearfix"></div>
 		    </div>
 			<div class="comments-section-grids" id="comment-section">
+				@foreach ($comments as $comment)
 				<div class="comments-section-grid">
 					<div class="col-md-2 comments-section-grid-image">
-						<img src="{{ asset('fe_images/eye-brow.jpg') }}" class="img-responsive" alt="" />
+						<img src="{{ $comment->user->image ? '/fe_images/'.$comment->user->image : '/no-image.png' }}" class="img-responsive" alt="" />
 					</div>
 					<div class="col-md-10 comments-section-grid-text">
-						<h4><a href="#">MARWA ELGENDY</a></h4>
-						<label>5/4/2014 at 22:00   </label>
-						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound but because those who do not know how to pursue pleasure rationally encounter consequences.</p>
+						<h4><a href="#">{{$comment->user->fullname}}</a></h4>
+						<label>{{$comment->created_at}}</label>
+						<p>{{$comment->content}}</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
-				
-				<div class="comments-section-grid">
-					<div class="col-md-2 comments-section-grid-image">
-						<img src="{{ asset('fe_images/stylish.jpg') }}" class="img-responsive" alt="" />
-					</div>
-					<div class="col-md-10 comments-section-grid-text">
-						<h4><a href="#">MARWA ELGENDY</a></h4>
-						<label>5/4/2014 at 22:00   </label>
-						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound but because those who do not know how to pursue pleasure rationally encounter consequences.</p>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				
+				@endforeach
 			</div>
-			<div class="comments-section-grid">
+			<!-- <div class="comments-section-grid">
 				<a href="#"><span class="loading-more">Loading more</span></a>
-			</div>
+			</div> -->
 	    </div>
 	  <!-- comments-section-ends -->
 		  <div class="reply-section">

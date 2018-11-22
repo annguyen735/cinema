@@ -60,7 +60,8 @@ class Film extends Model
         'total_rating',
         'is_active',
         'image',
-        'video_url'
+        'video_url',
+        'content'
     ];
 
     /**
