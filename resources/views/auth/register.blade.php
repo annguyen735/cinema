@@ -7,15 +7,9 @@
 	<div class="top-header">
 		<div class="logo">
 			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
-			<p>Movie Theater</p>
+			<p>BestFilm</p>
         </div>
         @include("frontend.layouts.partials.login-register")
-		<div class="search">
-			<form>
-				<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-				<input type="submit" value="">
-			</form>
-		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="header-info-form">
@@ -89,7 +83,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" class="form-control" name="image">
+                                <input id="image" type="file" class="form-control" name="image" style="padding:0px;">
                             </div>
                         </div>
 
@@ -104,7 +98,7 @@
                         <div class="form-group row">
                             <label for="city_id" class="col-md-4 col-form-label text-md-right">{{ __('Cities') }}</label>
                             <div class="col-md-6" id="sandbox-container">
-                                <select name="city_id" class="select" style="color:black; font-family:-webkit-pictographa">
+                                <select name="city_id" class="select" style="font-family:-webkit-pictographa; background-color: transparent; height:35px; margin-top:5px;font-size:20px;">
                                     @foreach ($cities as $city)
                                         <option value="{{$city->id}}" {{ (old('city_id') == $city->id) ? 'selected' : '' }}>{{$city->name}}</option>
                                     @endforeach
@@ -112,7 +106,7 @@
                             </div>
                         </div>
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-8 offset-md-6">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
