@@ -7,21 +7,15 @@
 	<div class="top-header">
 		<div class="logo">
 			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
-			<p>Movie Theater</p>
+			<p>BestFilm</p>
         </div>
         @include("frontend.layouts.partials.login-register")
-		<div class="search">
-			<form>
-				<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-				<input type="submit" value="">
-			</form>
-		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="header-info-form">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Đăng nhập') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

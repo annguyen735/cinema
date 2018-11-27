@@ -20,8 +20,8 @@ class CreateFilmsTable extends Migration
             $table->string('name', 100);
             $table->integer('price');
             $table->year('year',4);
-            $table->string('author',100);
-            $table->string('actor');
+            $table->text('author');
+            $table->text('actor');
             $table->string('genre');
             $table->integer('time_limit');
             $table->string('kind', 100);

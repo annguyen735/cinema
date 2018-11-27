@@ -1,79 +1,64 @@
 @extends('frontend.layouts.main')
 
-@section('title', __('HomePage'))
+@section('title', __('Trang chủ'))
 
 @section('content')
 <div class="header">
 	<div class="top-header">
 		<div class="logo">
 			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
-			<p>Movie Theater</p>
+			<p>BestFilm</p>
 		</div>
 		@include("frontend.layouts.partials.login-register")
-		<div class="search">
-			<form>
-				<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-				<input type="submit" value="">
-			</form>
-		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="header-info">
-		<h1>BIG HERO 6</h1>
-		<p class="age"><a href="#">All Age</a> Don Hall, Chris Williams</p>
-		<p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  8,5/10</p>
-		<p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; Animation, Action, Comedy</p>
-		<p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; 7 November 2014</p>
-		<p class="special">The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.</p>
-		<a class="video" href="#"><i class="video1"></i>WATCH TRAILER</a>
-		<a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
+		<h1>{{$films->first()->name}}</h1>
+		<p class="age"><a href="#">Đạo diễn</a> {{$films->first()->author}}</p>
+		<p class="review reviewgo">Thể loại	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; {{$films->first()->genre}}</p>
+		<p class="review">Công chiếu &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; {{$films->first()->year}}</p>
+		<p class="special">{{$films->first()->content}}</p>
+		{{-- <a class="video" href="#"><i class="video1"></i>WATCH TRAILER</a> --}}
+		<a class="book" href="{{ route('videos.show', $films->first()->id) }}"><i class="book1"></i>Đặt vé</a>
 	</div>
 </div>
 <div class="review-slider">
-		<ul id="flexiselDemo1">
-	<li><img src="{{ asset('fe_images/r1.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/r2.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/r3.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/r4.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/r5.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/r6.jpg')}}" alt=""/></li>
-</ul>
+	<ul id="flexiselDemo1">
+		@foreach ($films as $film)
+		<li><img src="{{ asset('fe_images/'.$film->image)}}" alt="" class="img-click" data-id="{{ $film->id}}"/></li>
+		@endforeach
+	</ul>
 
 </div>
 <div class="video">
-	<iframe  src="https://www.youtube.com/embed/2LqzF5WauAw" frameborder="0" allowfullscreen></iframe>
+	<iframe  src="https://www.youtube.com/embed/{{$films->first()->video_url}}" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="news">
 	<div class="col-md-6 news-left-grid">
-		<h3>Don’t be late,</h3>
-		<h2>Book your ticket now!</h2>
-		<h4>Easy, simple & fast.</h4>
-		<a href="#"><i class="book"></i>BOOK TICKET</a>
-		<p>Get Discount up to <strong>10%</strong> if you are a member!</p>
+		<h3>Đừng bỏ lỡ,</h3>
+		<h2>Đặt vé ngay hôm nay!</h2>
+		<h4>Dễ dàng, đơn giản & nhanh gọn.</h4>
+		<a href="{{ route('videos.show', $films->first()->id) }}"><i class="book"></i>Đặt vé</a>
+		<p>Khuyến mãi <strong>10%</strong> nếu bạn là thành viên!</p>
 	</div>
 	<div class="col-md-6 news-right-grid">
-		<h3>News</h3>
+		<h3>Tin tức</h3>
+		@foreach ($news as $film)
 		<div class="news-grid">
-			<h5>Lorem Ipsum Dolor Sit Amet</h5>
-			<label>Nov 11 2014</label>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+			<h5>{{ $film->name }}</h5>
+			<label>{{ $film->year }}</label>
+			<p>{{ $film->content }}</p>
 		</div>
-		<div class="news-grid">
-			<h5>Lorem Ipsum Dolor Sit Amet</h5>
-			<label>Nov 11 2014</label>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-		</div>
-		<a class="more" href="#">MORE</a>
+		@endforeach
 	</div>
 	<div class="clearfix"></div>
 </div>
 <div class="more-reviews">
-		<ul id="flexiselDemo2">
-	<li><img src="{{ asset('fe_images/m1.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/m2.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/m3.jpg')}}" alt=""/></li>
-	<li><img src="{{ asset('fe_images/m4.jpg')}}" alt=""/></li>
-</ul>
+	<ul id="flexiselDemo2">
+		@foreach ($filmsNew as $filmNew)
+		<li><img src="{{ asset('fe_images/'.$filmNew->image)}}" alt="" class="img-click" data-id="{{ $filmNew->id}}"/></li>
+		@endforeach
+	</ul>
 </div>
 @endsection
 @section("script")
@@ -131,6 +116,12 @@ $(window).load(function() {
 			}
 		}
 	});
+	});
+</script>
+<script>
+	$(".img-click").click(function(){
+		$filmID = $(this).attr("data-id")
+		window.location="http://bestfilm.an/videos/" + $filmID
 	});
 </script>
 @endsection

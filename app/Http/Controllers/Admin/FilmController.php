@@ -261,21 +261,31 @@ class FilmController extends Controller
                         }
                         $insert[] = $value;
                     }
-                    \DB::beginTransaction();
-                        try{
-                            Film::insert($insert);
-                            \DB::commit();
-                            $check = 1;
-                            return redirect()->route('films.index', compact('check'));
-                        } catch (QueryException $e) {
-                            \DB::rollBack();
-                            $check = 0;
-                            return redirect()->route('films.index', compact('check'));
-                        } catch (\Exception $e) {
-                            \DB::rollBack();
-                            $check = 0;
-                            return redirect()->route('films.index', compact('check'));
+                    try{
+                        for ($i = 0; $i < count($insert); $i++) {
+                            Film::create([
+                                'name' => $insert[$i]['name'],
+                                'year' => $insert[$i]['year'],
+                                'price' => $insert[$i]['price'],
+                                'author' => $insert[$i]['author'],
+                                'actor' => $insert[$i]['actor'],
+                                'genre' => $insert[$i]['genre'],
+                                'time_limit' => $insert[$i]['time_limit'],
+                                'kind' => $insert[$i]['kind'],
+                                'image' => $insert[$i]['image'],
+                                'video_url' => $insert[$i]['video_url'],
+                                'content' => $insert[$i]['content'],
+                            ]);
                         }
+                        $check = 1;
+                        return redirect()->route('films.index', compact('check'));
+                    } catch (QueryException $e) {
+                        $check = 0;
+                        return redirect()->route('films.index', compact('check'));
+                    } catch (\Exception $e) {
+                        $check = 0;
+                        return redirect()->route('films.index', compact('check'));
+                    }
                 }
             }
         }
