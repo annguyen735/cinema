@@ -7,15 +7,9 @@
 	<div class="top-header">
 		<div class="logo">
 			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
-			<p>Movie Theater</p>
+			<p>BestFilm</p>
 		</div>
 		@include("frontend.layouts.partials.login-register")
-		<div class="search">
-			<form>
-				<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-				<input type="submit" value="">
-			</form>
-		</div>
 		<div class="clearfix"></div>
 	</div>
 </div>
@@ -23,29 +17,23 @@
 		<div class="top-header span_top">
 			<div class="logo">
 				<a href="index.html"><img src="{{asset('fe_images/logo.png') }}" alt="" /></a>
-				<p>Movie Theater</p>
-			</div>
-			<div class="search v-search">
-				<form>
-					<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-					<input type="submit" value="">
-				</form>
+				<p>BestFilm</p>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 			<div class="reviews-section">
-				<h3 class="head">Movie</h3>
+				<h3 class="head">Film</h3>
 					<div class="col-md-9 reviews-grids">
 						<div class="review">
 							<div class="movie-pic">
-								<a href="single.html"><img src="{{ asset('fe_images/r4.jpg') }}" alt="" /></a>
+								<a href="#"><img src="{{ asset('fe_images/'. $film->image) }}" alt="" /></a>
 							</div>
 							<div class="review-info">
 								<h3><b>{{$film->name}}</b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="border-radius:8px; background-color:red; color:white; padding:10px;">{{$film->year}}</i></h3>
 								<div class="clearfix"></div>
 								<div class="yrw">
 									<div id="small-dialog" class="mfp-hide">
-										<iframe  src="https://www.youtube.com/embed/2LqzF5WauAw" frameborder="0" allowfullscreen style="width:400px; height:300px"></iframe>
+										<iframe  src="https://www.youtube.com/embed/.{{ $film->video_url}}" frameborder="0" allowfullscreen style="width:400px; height:300px"></iframe>
 									</div>
 									
 									<!-- <div class="clearfix"></div> -->
