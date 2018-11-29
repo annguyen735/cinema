@@ -7,15 +7,9 @@
 	<div class="top-header">
 		<div class="logo">
 			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
-			<p>Movie Theater</p>
+			<p>BestFilm</p>
         </div>
         @include("frontend.layouts.partials.login-register")
-		<div class="search">
-			<form>
-				<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-				<input type="submit" value="">
-			</form>
-		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="header-info-form">
@@ -55,7 +49,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-8 offset-md-6">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>

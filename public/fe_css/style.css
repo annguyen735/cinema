@@ -82,13 +82,22 @@ label{
 	color: white;
 	background-color: transparent;
 }
+.header-info-form .card .card-header{
+	color: darkorchid;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: -webkit-body;
+}
 .header-info-form .card-body input {
-	color: white;
+	color: blue;
 	background-color: transparent;
+    font-size: 20px;
 }
 .header-info-form .card-body label {
-	color: black;
-	background-color: transparent;
+	color: orange;
+    background-color: transparent;
+    font-size: 20px;
 }
 p.age {
 	color:#f4f4f4;
