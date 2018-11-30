@@ -20,19 +20,19 @@
 </style>
 <div class="login-register pull-right dropdown">
     @guest
-        <a href="{{route('login')}}">{{__("Login")}}</a> /
-        <a href="{{route('register')}}">{{__("Register")}}</a>
+        <a href="{{route('login')}}">{{__("Đăng nhập")}}</a> /
+        <a href="{{route('register')}}">{{__("Đăng ký")}}</a>
     @else
-        <p>Hello, <a href="">{{\Auth::user()->fullname}}</a></p>
+        <p style="font-size: 2em;">Chào, <a href="">{{\Auth::user()->fullname}}</a></p>
         <div class="dropdown-content">
-            <div class="pull-left">
-                <a href="{{ route('users.show', Auth::user()->access_token) }}" class="btn btn-default btn-flat">{{__('Profile')}}</a>
+            <div class="pull-left" style="font-size: 2em;">
+                <a href="{{ route('users.show', Auth::user()->access_token) }}" class="btn btn-default btn-flat">{{__('Thông tin')}}</a>
             </div>
-            <div class="pull-right">
+            <div class="pull-right" style="font-size: 2em;">
                 <form action="{{ route('logout') }}" method="POST">
                     {{csrf_field()}}
                     <button type="submit" name="logout" class="btn btn-default btn-flat">
-                    {{__('Log out')}}
+                    {{__('Đăng xuất')}}
                     </button>
                 </form>
             </div>

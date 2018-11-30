@@ -36,7 +36,7 @@
 		 @yield('css')
     <!-- end css -->
 	</head>
-<body>
+<body style="font-family: fantasy;">
 	<!-- header-section-starts -->
 	<div class="full">
 		<!-- start menu-bar -->

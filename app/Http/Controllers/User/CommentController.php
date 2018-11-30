@@ -34,8 +34,9 @@ class CommentController extends Controller
             "film_id" => $request["id_film"],
             "content" => $request["content"],
         ]);
+        $count = Comment::where("film_id", $request["id_film"])->count();
         if ($result) {
-            return response()->json(['code' => 200]);
+            return response()->json(['code' => 200, 'count' => $count]);
         }
         
     }

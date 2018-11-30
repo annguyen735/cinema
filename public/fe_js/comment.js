@@ -8,7 +8,7 @@ $('.create-comment').keypress(function (e) {
     if (img == "no-image.png") {
         img_user_link = $('<img src="/'+ img +'" class="img-responsive"/>')
     } else {
-        img_user_link = $('<img src="'+ img +'" class="img-responsive"/>')
+        img_user_link = $('<img src="/'+ img +'" class="img-responsive"/>')
     }
     //content comment
     div_content = $('<div class="col-md-10 comments-section-grid-text"></div>')
@@ -57,7 +57,7 @@ $('.create-comment').keypress(function (e) {
                     div_wrap.append(div_img)
                     div_wrap.append(div_content)
                     div_wrap.append(clr)
-            
+                    $(".comments-section-head-text h3").html($result["count"] + " Bình luận")
                     $('#comment-section').append(div_wrap)
                 }
             },

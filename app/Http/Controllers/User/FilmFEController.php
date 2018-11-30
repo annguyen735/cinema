@@ -49,8 +49,20 @@ class FilmFEController extends Controller
     public function show($id)
     {
         $film = Film::findOrFail($id);
+        $arrKind = explode(",",$film->kind);
+        // $currentDate = date("Y-m-d H:i:s");
+        
         $comments = Comment::where("film_id", $id)->with("user")->get();
-        return view("frontend.details.index", ["film" => $film, "comments" =>$comments]);
+        
+        $films = Film::select("films.*", \DB::raw("count(comments.film_id) as cmt_count"))
+                ->leftjoin("comments", "film_id", "=", "films.id")
+                ->groupBy("films.id")
+                // ->where(\DB::raw("DATEADD(day, -7, ". $currentDate .")"), "<=", "created_at")
+                ->orderBy("cmt_count", "DESC")->limit(5)->get();
+
+        $filmsNew = Film::where("is_active", 0)->orderBy("id", "DESC")->limit(4)->get();
+
+        return view("frontend.details.index", ["film" => $film, "comments" =>$comments, 'kinds' => $arrKind, 'films' => $films, 'filmsNew' => $filmsNew]);
     }
 
     /**

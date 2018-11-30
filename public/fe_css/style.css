@@ -2357,3 +2357,18 @@ clear: both;
     cursor:pointer;
     overflow: hidden;  
 }
+
+.detail-css {
+	font-family: fantasy;
+    font-size: 25px !important;
+    border: 7px groove #e6c145;
+    border-radius: 10px;
+    width: 9em;
+    padding: 9px;
+    color: orangered !important;
+}
+
+.p-css {
+	font-family: monospace;
+    font-size: 1.5em;
+}
