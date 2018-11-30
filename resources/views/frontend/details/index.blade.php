@@ -7,7 +7,7 @@
 	<div class="top-header">
 		<div class="logo">
 			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
-			<p>BestFilm</p>
+			<p style="font-size:3em;">BestFilm</p>
 		</div>
 		@include("frontend.layouts.partials.login-register")
 		<div class="clearfix"></div>
@@ -31,10 +31,10 @@
 							
 							<!-- <div class="clearfix"></div> -->
 						</div>
-						<p class="info">Diễn viên:&nbsp;&nbsp;{{$film->actor}}</p>
-						<p class="info">Đạo diễn: &nbsp;&nbsp;{{$film->author}}</p>
-						<p class="info">Thể loại:;&nbsp;&nbsp; {{$film->genre}}</p>
-						<p class="info">Thời lượng:&nbsp; &nbsp; {{$film->time_limit}} minutes</p>
+						<p class="info" style="font-size: 2em;">Diễn viên:&nbsp;&nbsp;{{$film->actor}}</p>
+						<p class="info" style="font-size: 2em;">Đạo diễn: &nbsp;&nbsp;{{$film->author}}</p>
+						<p class="info" style="font-size: 2em;">Thể loại:;&nbsp;&nbsp; {{$film->genre}}</p>
+						<p class="info" style="font-size: 2em;">Thời lượng:&nbsp; &nbsp; {{$film->time_limit}} minutes</p>
 						
 						@include("frontend.details.partials.booking-ticket")
 						@if (\Auth::check())
@@ -85,7 +85,7 @@
 				  </div>
 			  </div> 
 			<div class="blog-form">
-				<input type="text" class="create-comment" value="" placeholder="{{!\Auth::check() ? 'You must login to comment' : 'Enter your comment'}}" user-img="{{ \Auth::check() ? \Auth::user()->image ? \Auth::user()->image : 'no-image.png' : ''}}" fullname="{{ \Auth::check() ? \Auth::user()->fullname : ''}}" {{ \Auth::check() ? '' :'disabled'}} user-id="{{  \Auth::check() ? Auth::user()->id : ''}}">
+				<input type="text" class="create-comment" value="" placeholder="{{!\Auth::check() ? 'Bạn phải đăng nhập để bình luận' : 'Nhập bình luận'}}" user-img="{{ \Auth::check() ? \Auth::user()->image ? \Auth::user()->image : 'no-image.png' : ''}}" fullname="{{ \Auth::check() ? \Auth::user()->fullname : ''}}" {{ \Auth::check() ? '' :'disabled'}} user-id="{{  \Auth::check() ? Auth::user()->id : ''}}">
 			 </div>
 		  </div>
 		  </div>
@@ -97,7 +97,7 @@
 						<li class="ent">
 							<a href="{{ route('videos.show', $film->id) }}"><img src="{{ asset('fe_images/'.$film->image) }}" alt="" /></a>
 						</li>
-						<li>
+						<li style="font-size: 2em;">
 							<a href="{{ route('videos.show', $film->id) }}">{{ $film->name }}</a>
 						
 						</li>
