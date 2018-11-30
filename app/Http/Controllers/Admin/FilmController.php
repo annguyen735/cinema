@@ -47,7 +47,7 @@ class FilmController extends Controller
             if ($request->has('image') && $request->image != null) {
                 $image = $request->file('image');
                 $fileName = config('image.path') . 'img' . '-' . time() . '.' . $image->getClientOriginalExtension();
-                $filePath = public_path('images/');
+                $filePath = public_path('fe_images/');
                 $request->file('image')->move($filePath, $fileName);
             }
 

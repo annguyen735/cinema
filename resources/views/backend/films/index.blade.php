@@ -78,7 +78,7 @@
                         <td>{{ $film->time_limit }}</td>
                         <td>{{ $film->kind }}</td>
                         <td>{{ $film->avg_rating }}</td>
-                        <td><img {{ $film->image != null ? $url= $film->image : $url=config('image.default_image') }} src="{{asset($url)}}" alt="" width="60px" height="50px"></td>
+                        <td><img {{ $film->image != null ? $url= "/fe_images/".$film->image : $url=config('image.default_image') }} src="{{asset($url)}}" alt="" width="60px" height="50px"></td>
                         {{-- <td><iframe width="120px" height="100px" {{ $film->video_url != null ? $video=$film->video_url : $video=config('image.default_video') }} src="https://www.youtube.com/embed/{{$video}}" 
                             frameborder="0" class="video-js" data-id="$film-id" id="video-"></iframe></td> --}}
                       <td class="text-center">
