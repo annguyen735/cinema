@@ -81,6 +81,7 @@
 				</div>
 				@endforeach
 			</div>
+			{{ $comments->links() }}
 	    </div>
 	  <!-- comments-section-ends -->
 		  <div class="reply-section">

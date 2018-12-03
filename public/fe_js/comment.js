@@ -47,18 +47,19 @@ $('.create-comment').keypress(function (e) {
             },
             success : function ($result) {
                 if ($result["code"] == 200) {
-                    div_img.append(img_user_link)
+                    location.reload();
+                    // div_img.append(img_user_link)
             
-                    div_content.append(h4)
-                    div_content.append(btn)
-                    div_content.append(lable)
-                    div_content.append(content)
+                    // div_content.append(h4)
+                    // div_content.append(btn)
+                    // div_content.append(lable)
+                    // div_content.append(content)
                     
-                    div_wrap.append(div_img)
-                    div_wrap.append(div_content)
-                    div_wrap.append(clr)
-                    $(".comments-section-head-text h3").html($result["count"] + " Bình luận")
-                    $('#comment-section').append(div_wrap)
+                    // div_wrap.append(div_img)
+                    // div_wrap.append(div_content)
+                    // div_wrap.append(clr)
+                    // $(".comments-section-head-text h3").html($result["count"] + " Bình luận")
+                    // $('#comment-section').append(div_wrap)
                 }
             },
             error : function () {
@@ -80,7 +81,8 @@ $('.delete-comment').click(function () {
         type: "DELETE",
         success : function ($result) {
             if ($result["code"] == 200) {
-                $('#delete-comment-' + $commentID).parent().parent().remove();
+                // $('#delete-comment-' + $commentID).parent().parent().remove();
+                location.reload();
             }
         },
         error : function () {

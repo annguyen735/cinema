@@ -54,7 +54,7 @@ class FilmFEController extends Controller
         $film = Film::findOrFail($id);
         $arrKind = explode(",",$film->kind);
         
-        $comments = Comment::where("film_id", $id)->with("user")->get();
+        $comments = Comment::where("film_id", $id)->orderBy("id", "DESC")->with("user")->paginate(4);
         
         $films = Film::select("films.*", \DB::raw("count(comments.film_id) as cmt_count"))
                 ->leftjoin("comments", "film_id", "=", "films.id")
