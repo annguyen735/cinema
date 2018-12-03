@@ -69,3 +69,22 @@ $('.create-comment').keypress(function (e) {
         $('.create-comment').val("")
     }
 })
+
+$('.delete-comment').click(function () {
+    $commentID = $(this).attr("data-id")
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+        },
+        url: '/comments/' + $commentID,
+        type: "DELETE",
+        success : function ($result) {
+            if ($result["code"] == 200) {
+                $('#delete-comment-' + $commentID).parent().parent().remove();
+            }
+        },
+        error : function () {
+            console.log("error")
+        }
+    });
+});
