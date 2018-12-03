@@ -47,18 +47,19 @@ $('.create-comment').keypress(function (e) {
             },
             success : function ($result) {
                 if ($result["code"] == 200) {
-                    div_img.append(img_user_link)
+                    location.reload();
+                    // div_img.append(img_user_link)
             
-                    div_content.append(h4)
-                    div_content.append(btn)
-                    div_content.append(lable)
-                    div_content.append(content)
+                    // div_content.append(h4)
+                    // div_content.append(btn)
+                    // div_content.append(lable)
+                    // div_content.append(content)
                     
-                    div_wrap.append(div_img)
-                    div_wrap.append(div_content)
-                    div_wrap.append(clr)
-                    $(".comments-section-head-text h3").html($result["count"] + " Bình luận")
-                    $('#comment-section').append(div_wrap)
+                    // div_wrap.append(div_img)
+                    // div_wrap.append(div_content)
+                    // div_wrap.append(clr)
+                    // $(".comments-section-head-text h3").html($result["count"] + " Bình luận")
+                    // $('#comment-section').append(div_wrap)
                 }
             },
             error : function () {
@@ -69,3 +70,55 @@ $('.create-comment').keypress(function (e) {
         $('.create-comment').val("")
     }
 })
+
+$('.delete-comment').click(function () {
+    $commentID = $(this).attr("data-id")
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+        },
+        url: '/comments/' + $commentID,
+        type: "DELETE",
+        success : function ($result) {
+            if ($result["code"] == 200) {
+                // $('#delete-comment-' + $commentID).parent().parent().remove();
+                location.reload();
+            }
+        },
+        error : function () {
+            console.log("error")
+        }
+    });
+});
+
+$('.edit-comment').click(function () {
+    $commentID = $(this).attr("data-id");
+    $('.div-comment-' + $commentID).remove();
+    $content = $(this).attr("data-content");
+    $div = $('<div class="blog-form div-comment-'+$commentID+'"><input type="text" class="update-comment" value="'+ $content +'" placeholder="Nhập bình luận"></div>');
+    $('#comment-' + $commentID).remove();
+    $(this).parent().append($div);
+
+    $('.div-comment-' + $commentID + " input").keypress(function (e) {
+        if(e.keyCode == 13) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                },
+                url: '/comments/' + $commentID,
+                data: {
+                    content: $(this).val()
+                },
+                type: "PUT",
+                success : function ($result) {
+                    if ($result["code"] == 200) {
+                        location.reload();
+                    }
+                },
+                error : function () {
+                    console.log("error")
+                }
+            });
+        }
+    });
+});

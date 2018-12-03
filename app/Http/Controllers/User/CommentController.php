@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests\Frontend\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -26,7 +27,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
         $request = Input::all(); 
         $result = Comment::create([
@@ -42,37 +43,24 @@ class CommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CommentRequest $request, $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        
+        if (request()->ajax()) {
+            $result = $comment->update([
+                "content" => $request->content,
+            ]);
+            if($result) {
+                return response()->json(['code' => 200, 'content' => $request->content]);
+            }
+        }
     }
 
     /**
@@ -83,6 +71,12 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        if (request()->ajax()) {
+            $result = $comment->delete();
+            if($result) {
+                return response()->json(['code' => 200]);
+            }
+        }
     }
 }
