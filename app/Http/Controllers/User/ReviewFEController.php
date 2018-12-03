@@ -18,7 +18,7 @@ class ReviewFEController extends Controller
         $films = Film::select("films.*", \DB::raw("count(comments.film_id) as cmt_count"))
             ->join("comments", "film_id", "=", "films.id")
             ->groupBy("films.id")
-            ->orderBy("cmt_count", "DESC")->get();
+            ->orderBy("cmt_count", "DESC")->paginate(5);
         
         $topFilms = Film::select("films.*", \DB::raw("count(comments.film_id) as cmt_count"))
             ->leftjoin("comments", "film_id", "=", "films.id")

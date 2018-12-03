@@ -44,6 +44,7 @@
 							<div class="clearfix"></div>
 						</div>
 						@endforeach
+						{{$films->links()}}
 					</div>
 					<div class="col-md-3 side-bar">
 							<div class="entertainment">
