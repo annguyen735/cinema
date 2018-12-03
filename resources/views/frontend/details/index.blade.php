@@ -22,7 +22,7 @@
 						<a href="#"><img src="{{ asset('fe_images/'. $film->image) }}" alt="" /></a>
 					</div>
 					<div class="review-info">
-						<h3><b style="font-family:fantasy; font-size:25px;">{{$film->name}}</b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="border-radius:8px; background-color:red; color:white; padding:10px;">{{$film->year}}</i></h3>
+						<h3><b style="font-family:fantasy; font-size:2em;">{{$film->name}}</b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="border-radius:8px; background-color:red; color:white; padding:10px;">{{$film->year}}</i></h3>
 						<div class="clearfix"></div>
 						<div class="yrw">
 							<div id="small-dialog" class="mfp-hide">
