@@ -569,7 +569,7 @@ p.claim {
   background:#fff;
 }
 .content-grid{
-	width: 22.75%;
+	width: 21.75%;
   float: left;
   text-align: center;
   border: 1px solid rgba(235, 235, 235, 0.53);
@@ -582,6 +582,8 @@ p.claim {
 }
 .content-grid img{
 	display:block;
+	width: 289px;
+	height: 387px;
 }
 .content-grid h3{
 	color: #888;
@@ -646,31 +648,9 @@ p.claim {
 	display: block;
 }
 /*----start-pagenation-----*/
-.pagenation{
+.pagination{
 	text-align: center;
-}
-.pagenation ul li{
-	display:inline-block;
-}
-.pagenation ul li a{
-	background: #000;
-	padding: 10px;
-	cursor: pointer;
-	border: none;
-	transition: 0.5s ease;
-	-o-transition: 0.5s ease;
-	-webkit-transition: 0.5s ease;
-	color: #FFF;
-	outline: none;
-	text-transform: uppercase;
-	display: block;
-	font-size: 0.875em;
-}
-.pagenation ul li a:hover{
-	color: #888;
-}
-.pagenation ul li:last-child{
-	padding-left:1em;
+	margin: auto 47% !important;
 }
 .span_top{
 	background:#fff;
@@ -2371,4 +2351,9 @@ clear: both;
 .p-css {
 	font-family: monospace;
     font-size: 1.5em;
+}
+
+.video-dialog {
+	width: 70em;
+    margin: auto;
 }

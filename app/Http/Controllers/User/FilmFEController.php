@@ -16,7 +16,10 @@ class FilmFEController extends Controller
      */
     public function index()
     {
-        return view("frontend.videos.index");
+        $videos = Film::select("video_url", "image", "name", "id")->orderBy("is_active", "ESC")
+            ->orderBy("updated_at", "DESC")->paginate(8);
+            
+        return view("frontend.videos.index", ['videos' => $videos]);
     }
 
     /**
@@ -50,14 +53,12 @@ class FilmFEController extends Controller
     {
         $film = Film::findOrFail($id);
         $arrKind = explode(",",$film->kind);
-        // $currentDate = date("Y-m-d H:i:s");
         
         $comments = Comment::where("film_id", $id)->with("user")->get();
         
         $films = Film::select("films.*", \DB::raw("count(comments.film_id) as cmt_count"))
                 ->leftjoin("comments", "film_id", "=", "films.id")
                 ->groupBy("films.id")
-                // ->where(\DB::raw("DATEADD(day, -7, ". $currentDate .")"), "<=", "created_at")
                 ->orderBy("cmt_count", "DESC")->limit(5)->get();
 
         $filmsNew = Film::where("is_active", 0)->orderBy("id", "DESC")->limit(4)->get();
