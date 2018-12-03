@@ -6,7 +6,7 @@
 <div class="header">
 	<div class="top-header">
 		<div class="logo">
-			<a href="index.html"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
+			<a href="{{ route('homepage') }}"><img src="{{ asset('fe_images/logo.png')}}" alt="" /></a>
 			<p style="font-size:3em;">BestFilm</p>
 		</div>
 		@include("frontend.layouts.partials.login-register")
