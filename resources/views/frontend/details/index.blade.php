@@ -68,12 +68,14 @@
 					</div>
 					<div class="col-md-10 comments-section-grid-text">
 						<h4><a href="#">{{$comment->user->fullname}}</a></h4>
-						@if (\Auth::user()->role == 1 || \Auth::user()->id == $comment->user_id)
-							<button type="button" class="pull-right glyphicon glyphicon-pencil edit-comment" id="edit-comment-{{$comment->id}}" data-id="{{$comment->id}}"></button>
-							<button type="button" class="pull-right glyphicon glyphicon-trash delete-comment" id="delete-comment-{{$comment->id}}" data-id="{{$comment->id}}"></button>
+						@if(\Auth::check())
+							@if (\Auth::user()->role == 1 || \Auth::user()->id == $comment->user_id)
+								<button type="button" class="pull-right glyphicon glyphicon-pencil edit-comment" id="edit-comment-{{$comment->id}}" data-id="{{$comment->id}}" data-content="{{ $comment->content }}"></button>
+								<button type="button" class="pull-right glyphicon glyphicon-trash delete-comment" id="delete-comment-{{$comment->id}}" data-id="{{$comment->id}}"></button>
+							@endif
 						@endif
 						<label>{{date_format($comment->updated_at, 'd/m/Y')}} at {{date_format($comment->updated_at, 'H:i')}}</label>
-						<p>{{$comment->content}}</p>
+						<p id="comment-{{$comment->id}}">{{$comment->content}}</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
