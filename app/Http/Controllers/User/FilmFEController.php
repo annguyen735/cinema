@@ -16,7 +16,10 @@ class FilmFEController extends Controller
      */
     public function index()
     {
-        return view("frontend.videos.index");
+        $videos = Film::select("video_url", "image", "name", "id")->orderBy("is_active", "ESC")
+            ->orderBy("updated_at", "DESC")->paginate(8);
+            
+        return view("frontend.videos.index", ['videos' => $videos]);
     }
 
     /**
