@@ -20,6 +20,7 @@ class CommentTableSeeder extends Seeder
             factory(Comment::class)->create([
                 'user_id' => $faker->randomElement($userIds),
                 'film_id' => $faker->randomElement($filmIds),
+                "content" => $faker->realText($maxNbChars = 200, $indexSize = 2)
             ]);
         }
     }
