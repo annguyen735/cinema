@@ -55,7 +55,10 @@ Route::group(['namespace' => 'User'], function () {
 
     Route::resource("/videos", "FilmFEController");
 
-    Route::get("/films/{id_films}/{id_schedule}/booking", "FilmFEController@booking")->name("films.booking");
+    Route::get("/films/{id_schedule}/booking", "BookTicketController@booking")->name("films.booking");
+    Route::get("/payment/booking", "BookTicketController@payment")->name("films.payment");
+    Route::post("/films/{user_id}/{id_schedule}/booking", "BookTicketController@createBooking")->name("films.createBooking");
+
     Route::get("/cities/available", "CityController@showCityHaveCinema")->name("cities.available");
 
     Route::get("/cinemas", "CinemaController@index")->name("cinemasFE.index");

@@ -99,15 +99,4 @@ class FilmFEController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function booking($id)
-    {
-        return view("frontend.booking.index");
-    }
 }

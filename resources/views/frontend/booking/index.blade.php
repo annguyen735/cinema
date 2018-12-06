@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Movie Ticket Booking Widget Flat Responsive Widget Template :: w3layouts</title>
+<title>Best Film VN | Booking Film</title>
 <!-- for-mobile-apps -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,40 +16,44 @@
 </head>
 <body>
 <div class="content">
-	<h1>Movie Ticket Booking Widget</h1>
+	<h1>Bảng đặt vé xem phim</h1>
 	<div class="main">
-		<h2>Multiplex Theatre Showing Screen 1</h2>
+		<h2>Phòng {{$roomID}}</h2>
 		<div class="demo">
 			<div id="seat-map">
-				<div class="front">SCREEN</div>					
+				<div class="front">{{ $film->name }}</div>					
 			</div>
 			<div class="booking-details">
 				<ul class="book-left">
-					<li>Movie </li>
-					<li>Time </li>
-					<li>Tickets</li>
-					<li>Total</li>
-					<li>Seats :</li>
+					{{-- <li>Tên phim </li> --}}
+					<li>Thời lượng </li>
+					<li>Số lượng vé</li>
+					<li>Tổng tiền</li>
+					<li>Ghế đặt :</li>
 				</ul>
 				<ul class="book-right">
-					<li>: Gingerclown</li>
-					<li>: April 3, 21:00</li>
+					{{-- <li>: {{ $film->name }}</li> --}}
+					<li>: {{ $film->time_limit }} phút</li>
 					<li>: <span id="counter">0</span></li>
-					<li>: <b><i>$</i><span id="total">0</span></b></li>
+					<li>: <b><span id="total">0</span> <i>VNĐ</i></b></li>
 				</ul>
 				<div class="clear"></div>
 				<ul id="selected-seats" class="scrollbar scrollbar1"></ul>
+				{{-- @include("frontend.booking.payment")		 --}}
 			
-						
-				<button class="checkout-button">Book Now</button>	
-                <button type="button" class="checkout-button btn btn-warning pull-right" onclick="history.back();">Back</button>
+				<button class="checkout-button">Đặt vé</button>	
+                <button type="button" class="checkout-button btn btn-warning pull-right" onclick="history.back();">Quay lại</button>
 				<div id="legend"></div>
             </div>
 			<div style="clear:both"></div>
-	    </div>
-
+		</div>
 			<script type="text/javascript">
-				var price = 10; //price
+
+				var seatUnavailable = "{{ $seatUnavailable }}";
+
+				var arrSeats =  seatUnavailable.split(",")
+
+				var price = 60000; //price
 				$(document).ready(function() {
 					var $cart = $('#selected-seats'), //Sitting Area
 					$counter = $('#counter'), //Votes
@@ -60,7 +64,6 @@
 							'aaaaaaaaaa',
 							'aaaaaaaaaa',
 							'__________',
-							'aaaaaaaaaa',
 							'aaaaaaaaaa',
 							'aaaaaaaaaa',
 							'aaaaaaaaaa',
@@ -78,14 +81,14 @@
 						legend : { //Definition legend
 							node : $('#legend'),
 							items : [
-								[ 'a', 'available',   'Available' ],
-								[ 'a', 'unavailable', 'Sold'],
-								[ 'a', 'selected', 'Selected']
+								[ 'a', 'available',   'Chưa đặt' ],
+								[ 'a', 'unavailable', 'Đã đặt'],
+								[ 'a', 'selected', 'Đã chọn']
 							]					
 						},
 						click: function () { //Click event
 							if (this.status() == 'available') { //optional seat
-								$('<li>Row'+(this.settings.row+1)+' Seat'+this.settings.label+'</li>')
+								$('<li>Hàng '+(this.settings.row+1)+', Ghế '+this.settings.label+'</li>')
 									.attr('id', 'cart-item-'+this.settings.id)
 									.data('seatId', this.settings.id)
 									.appendTo($cart);
@@ -112,7 +115,7 @@
 						}
 					});
 					//sold seat
-					sc.get(['1_2', '4_4','4_5','6_6','6_7','8_5','8_6','8_7','8_8', '10_1', '10_2']).status('unavailable');
+					sc.get(arrSeats).status('unavailable');
 						
 				});
 				//sum total money
@@ -129,5 +132,30 @@
 </div>
 <script src="{{ asset('fe_js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('fe_js/scripts.js') }}"></script>
+<script>
+	$('.checkout-button').click(function(){
+		$arrSeat = []; 
+		$("#selected-seats li").each(function( index ) {
+			$arrSeat.push($( this ).attr('id').slice(10,13));
+		});
+		$userID = {{\Auth::user()->id}}
+		url = window.location.pathname;
+		$scheduleID = url.split("/")[2]
+		// console.log($scheduleID);
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+			},
+			url: '/payment/booking',
+			type: "GET",
+			data: {
+				user_id: $userID,
+				schedule_id: $scheduleID,
+				seats: $arrSeat,
+			}
+    	});
+	});
+</script>		
+
 </body>
 </html>
