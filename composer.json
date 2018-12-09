@@ -12,7 +12,8 @@
         "iatstuti/laravel-cascade-soft-deletes": "^1.4",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "maatwebsite/excel": "~2.1.0"
+        "maatwebsite/excel": "~2.1.0",
+        "stripe/stripe-php": "^6.24"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

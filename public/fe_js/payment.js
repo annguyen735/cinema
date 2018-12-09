@@ -67,7 +67,8 @@ function payWithStripe(e) {
             var token = response.id;
             // AJAX - you would send 'token' to your server here.
             $.post('/account/stripe_card_token', {
-                    token: token
+                    token: token,
+                    total: $('#total').val()
                 })
                 // Assign handlers immediately after making the request,
                 .done(function(data, textStatus, jqXHR) {

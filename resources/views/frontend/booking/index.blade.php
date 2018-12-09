@@ -39,9 +39,8 @@
 				</ul>
 				<div class="clear"></div>
 				<ul id="selected-seats" class="scrollbar scrollbar1"></ul>
-				{{-- @include("frontend.booking.payment")		 --}}
 			
-				<button class="checkout-button">Đặt vé</button>	
+				<button class="checkout-button" disabled="true" >Đặt vé</button>	
                 <button type="button" class="checkout-button btn btn-warning pull-right" onclick="history.back();">Quay lại</button>
 				<div id="legend"></div>
             </div>
@@ -95,7 +94,7 @@
 
 								$counter.text(sc.find('selected').length+1);
 								$total.text(recalculateTotal(sc)+price);
-											
+								$('.checkout-button').prop('disabled', false);
 								return 'selected';
 							} else if (this.status() == 'selected') { //Checked
 									//Update Number
@@ -106,6 +105,10 @@
 									//Delete reservation
 									$('#cart-item-'+this.settings.id).remove();
 									//optional
+									if ($counter.html() == 0) {
+										$('.checkout-button').prop('disabled', true);
+									}
+
 									return 'available';
 							} else if (this.status() == 'unavailable') { //sold
 								return 'unavailable';
@@ -134,26 +137,39 @@
 <script src="{{ asset('fe_js/scripts.js') }}"></script>
 <script>
 	$('.checkout-button').click(function(){
-		$arrSeat = []; 
+		arrSeat = []; 
 		$("#selected-seats li").each(function( index ) {
-			$arrSeat.push($( this ).attr('id').slice(10,13));
+			arrSeat.push($( this ).attr('id').slice(10,13));
 		});
-		$userID = {{\Auth::user()->id}}
+		userID = {{\Auth::user()->id}}
 		url = window.location.pathname;
-		$scheduleID = url.split("/")[2]
-		// console.log($scheduleID);
+		scheduleID = url.split("/")[2];
+		total = $('#total').html();
+		urlRedirect = "{{ route('films.booking.store') }}";
+		
 		$.ajax({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
 			},
-			url: '/payment/booking',
-			type: "GET",
+			url: urlRedirect,
+			type: "POST",
 			data: {
-				user_id: $userID,
-				schedule_id: $scheduleID,
-				seats: $arrSeat,
+				"user_id": userID,
+				"schedule_id": scheduleID,
+				"seats": arrSeat,
+				"total": total,
+				"price": 60000
+			},
+			success : function ($result) {
+				if ($result.code == 200) {
+					urlRedirect = "{{ route('films.payment') }}"
+					window.location.href = urlRedirect + '?seats=' + $result.seats + '&total=' + $result.total;
+				}
+			},
+			error : function () {
+				console.log("error")
 			}
-    	});
+		});
 	});
 </script>		
 
