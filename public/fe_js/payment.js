@@ -73,12 +73,16 @@ function payWithStripe(e) {
                 // Assign handlers immediately after making the request,
                 .done(function(data, textStatus, jqXHR) {
                     $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
+                    p = $('<p class="bg-success msg-striper"> Bạn đã đặt vé thành công </p>') 
+                    $('#show-message').append(p)
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     $form.find('.subscribe').html('There was a problem').removeClass('success').addClass('error');
                     /* Show Stripe errors on the form */
                     $form.find('.payment-errors').text('Try refreshing the page and trying again.');
                     $form.find('.payment-errors').closest('.row').show();
+                    p = $('<p class="bg-dager msg-striper"> Vui lòng thử lại </p>') 
+                    $('#show-message').append(p)
                 });
         }
     });

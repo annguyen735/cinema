@@ -2357,3 +2357,10 @@ clear: both;
 	width: 70em;
     margin: auto;
 }
+
+.msg-striper {
+	margin: 2em;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 2em;
+}

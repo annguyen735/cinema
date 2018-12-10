@@ -152,7 +152,10 @@
                 </tr>
                 </tbody></table>
             </div>
-        </div>            
+        </div>    
+        
+        <div class="box pull-right col-xs-12 col-md-4" id="show-message">
+        </div>
     </div>
 </div>
 @endsection
