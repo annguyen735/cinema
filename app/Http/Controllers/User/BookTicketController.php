@@ -124,6 +124,16 @@ class BookTicketController extends Controller
                     "source" => $request->token, // obtained with Stripe.js
                     "description" => "Booking ticket payment." 
             ) );
+            if ($payment) {
+                $result = Borrowing::where('id', $request->booking)->update([
+                    "status" => 1
+                ]);
+                if($result) {
+                    DetailBorrowing::where('borrowing_id', $request->booking)->update([
+                        "is_finish" => 1, 
+                    ]);
+                }
+            }
             return response()->json(['data' => $payment]);
         } catch ( \Exception $e ) {
             return response()->json(['code' => 500]);
@@ -244,7 +254,7 @@ class BookTicketController extends Controller
                         }
                     } 
             }
-            return response()->json(['code' => 200, 'seats' => implode(", ",$request->seats), 'total' => $request->total]);
+            return response()->json(['code' => 200, 'seats' => implode(", ",$request->seats), 'total' => $request->total, 'booking_id' => $booking->id]);
         } catch (QueryException $e) {
             return response()->json(['code' => 500]);
         } catch (\Exception $e) {

@@ -163,7 +163,7 @@
 			success : function ($result) {
 				if ($result.code == 200) {
 					urlRedirect = "{{ route('films.payment') }}"
-					window.location.href = urlRedirect + '?seats=' + $result.seats + '&total=' + $result.total;
+					window.location.href = urlRedirect + '?seats=' + $result.seats + '&total=' + $result.total + '&bookingID=' + $result.booking_id;
 				}
 			},
 			error : function () {

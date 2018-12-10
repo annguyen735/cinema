@@ -100,8 +100,15 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="total" id="total" value="{{$request['total']}}" />
                                 </div>
-                            </div>                        
+                            </div>   
                         </div>
+                        <div class="row" style="display: none">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="booking" id="booking" value="{{$request['bookingID']}}" />
+                                    </div>
+                                </div>                        
+                            </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start Subscription</button>
