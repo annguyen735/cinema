@@ -91,6 +91,12 @@
                   <input type="text" class="" name="video_url" id="video_url" placeholder="{{ __('Example: 9JvqTwbJXEY') }}" value="{{ old('video_url', $film->video_url) }}">
                   <small class="text-danger">{{ $errors->first('video_url') }}</small>
                 </div>
+
+                <div class="form-group has-feedback {{ $errors->has('video_url') ? ' has-error' : '' }}">
+                    <label for="content" >{{ __('Content') }}</label> <br>
+                    <textarea name="content" id="content" cols="100" rows="5">{{ old('video_url', $film->content) }}</textarea>
+                    <small class="text-danger">{{ $errors->first('content') }}</small>
+                </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

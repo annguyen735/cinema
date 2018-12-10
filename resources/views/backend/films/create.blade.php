@@ -18,7 +18,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="POST" action="{{ route('films.store') }}" enctype='multipart/form-data'>
+            <form role="form" method="POST" action="{{ route('films.store') }}" class="ckeditor" enctype='multipart/form-data'>
               {!! csrf_field() !!}
 
               <div class="box-body">
@@ -88,6 +88,12 @@
                   <input type="text" class="width-210" value="https://www.youtube.com/embed/" disabled>
                   <input type="text" class="" name="video_url" id="video_url" placeholder="{{ __('Example: 9JvqTwbJXEY') }}" value="{{ old('video_url') }}">
                   <small class="text-danger">{{ $errors->first('video_url') }}</small>
+                </div>
+
+                <div class="form-group has-feedback {{ $errors->has('video_url') ? ' has-error' : '' }}">
+                    <label for="content" >{{ __('Content') }}</label> <br>
+                    <textarea name="content" id="content" cols="100" rows="5"></textarea>
+                    <small class="text-danger">{{ $errors->first('content') }}</small>
                 </div>
               </div>
               <!-- /.box-body -->
