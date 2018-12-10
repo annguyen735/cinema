@@ -26,9 +26,7 @@ class ScheduleController extends Controller
         foreach ($roomIDs as $roomID) {
             array_push($arrRoomID, $roomID->id);
         }
-        // \DB::connection()->enableQueryLog();
         $schedules = Schedule::where("film_id", $idFilm)->whereIn("room_id",$arrRoomID)->where("time_start", ">=", date("H:i"))->with("room")->get()->toArray();
-        // dd(\DB::getQueryLog());
         
         if (request()->ajax()) {
             return response()->json(["schedules" => $schedules]);
