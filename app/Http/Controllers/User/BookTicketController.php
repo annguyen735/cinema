@@ -82,6 +82,7 @@ class BookTicketController extends Controller
             }
         }
         $arrUnavailable = implode(",",$arrUnavailable);
+
         $film = Film::where("id", $schedule->film_id)->first();
         return view("frontend.booking.index", ["seatUnavailable" => $arrUnavailable, "film" => $film, "roomID" => $schedule->room_id ]);
     }
@@ -148,9 +149,16 @@ class BookTicketController extends Controller
      */
     public function store(CreateBookingRequest $request)
     {
+
+        $userID = null;
+        $total = $request->total;
+        if (\Auth::check()) {
+            $userID = \Auth::user()->id;
+            $request->total = $request->total/60000 * 45000;
+        }
         try {
             $booking = Borrowing::create([
-                'user_id' => $request->user_id,
+                'user_id' => $userID,
                 'schedule_id' => $request->schedule_id,
                 'total_price' => $request->total,
                 'status' => 0,

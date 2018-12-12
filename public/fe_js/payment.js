@@ -75,7 +75,7 @@ function payWithStripe(e) {
                 .done(function(data, textStatus, jqXHR) {
                     $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
                     p = $('<p class="bg-success msg-striper"> Bạn đã đặt vé thành công </p>') 
-                    $('#show-message').append(p)
+                    $('#show-message').html(p)
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     $form.find('.subscribe').html('There was a problem').removeClass('success').addClass('error');
@@ -83,7 +83,7 @@ function payWithStripe(e) {
                     $form.find('.payment-errors').text('Try refreshing the page and trying again.');
                     $form.find('.payment-errors').closest('.row').show();
                     p = $('<p class="bg-dager msg-striper"> Vui lòng thử lại </p>') 
-                    $('#show-message').append(p)
+                    $('#show-message').html(p)
                 });
         }
     });

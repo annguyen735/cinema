@@ -28,6 +28,7 @@
                @include('backend.films.partials.import_modal')
              {{-- \Modal --}}
 
+            @if(\Auth::user()->id == 1)
               <section>
                 <div class="create-area">
                   <div>
@@ -45,6 +46,7 @@
                   <a href="{{ route('films.create') }}" class="btn btn-primary glyphicon glyphicon-plus"></a>
                 </div>
               </section>
+            @endif
              <div class="box-body">
               <table id="table-datatable" class="table table-bordered table-hover col-xs-12">
                 <thead>
@@ -104,6 +106,7 @@
                           </a>
                           @endif                            
                         </td>
+                        @if(\Auth::user()->id == 1)
                         <td class="text-center col-sm-1">
                             <a href="{{ route('films.edit', $film->id) }}" class="glyphicon glyphicon-pencil bg-green option update-city"></a>
 
@@ -119,6 +122,7 @@
                                 </button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
@@ -135,11 +139,13 @@
                   </nav>
                 </div>
                 <!-- /.pagination -->
+                @if(\Auth::user()->id == 1)
                 <section>
                   <div class="create-area pull-right">
                     <a href="{{ route('films.create') }}" class="btn btn-primary glyphicon glyphicon-plus"></a>
                   </div>
                 </section>
+                @endif
               </div>
             </div>
           </div>
