@@ -73,7 +73,7 @@ label{
 }
 .header-info-form{
 	float:right;
-	padding-top:4em;
+	/* padding-top:4em; */
 	width:60%;
 }
 .header-info-form .card {
