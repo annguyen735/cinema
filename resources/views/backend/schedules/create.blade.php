@@ -85,7 +85,7 @@
 
             <div class="form-group pull-right" style="margin-top:-250px">
               <div>
-                  <img class="img-schedule" {{empty($image) || $image == null ? $url = config('image.default_image') : $url = $image}} src="{{ asset($url) }}" alt="">
+                  <img class="img-schedule" {{empty($image) || $image == null ? $url = config('image.default_image') : $url = '/fe_images/' .$image}} src="{{ asset($url) }}" alt="">
               </div>
               <div>
                   @for($i = 8; $i <= 23; $i++)

@@ -94,7 +94,7 @@ $('#film_id').change(function() {
             if ($result['image'] == null) {
                 $url = "/no-image.jpg"
             } else {
-                $url = "/" + $result['image']
+                $url = "/fe_images/" + $result['image']
             }
 
             $('.img-schedule').attr('src', $url)
