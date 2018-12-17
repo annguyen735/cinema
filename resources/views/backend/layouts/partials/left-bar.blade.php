@@ -86,6 +86,16 @@
                 </span>
                 </a>
             </li>
+
+            <li class="{{ activeRoute(['bookings.index']) }}">
+                <a href="{{ route('bookings.index') }}">
+                <i class="fa fa-bar-chart-o" aria-hidden="true"></i>
+                <span>{{ __('Bookings') }}</span>
+                <span class="pull-right-container">
+                    <small id="total-categories" class="label pull-right bg-yellow">{{ getCount(App\Models\Borrowing::class) }}</small>
+                </span>
+                </a>
+            </li>
         </ul>
     </section>
 </aside>
