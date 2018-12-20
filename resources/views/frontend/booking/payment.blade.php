@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-@section('title', __('Film Detail'))
+@section('title', __('Payments'))
 
 @section("css")
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -100,8 +100,15 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="total" id="total" value="{{$request['total']}}" />
                                 </div>
-                            </div>                        
+                            </div>   
                         </div>
+                        <div class="row" style="display: none">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="booking" id="booking" value="{{$request['bookingID']}}" />
+                                    </div>
+                                </div>                        
+                            </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start Subscription</button>
@@ -152,7 +159,10 @@
                 </tr>
                 </tbody></table>
             </div>
-        </div>            
+        </div>    
+        
+        <div class="box pull-right col-xs-12 col-md-4" id="show-message">
+        </div>
     </div>
 </div>
 @endsection

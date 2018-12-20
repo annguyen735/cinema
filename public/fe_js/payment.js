@@ -68,18 +68,29 @@ function payWithStripe(e) {
             // AJAX - you would send 'token' to your server here.
             $.post('/account/stripe_card_token', {
                     token: token,
-                    total: $('#total').val()
+                    total: $('#total').val(),
+                    booking: $('#booking').val(),
                 })
                 // Assign handlers immediately after making the request,
                 .done(function(data, textStatus, jqXHR) {
-                    $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
+                    if (data.code == 500) {
+                        $form.find('.subscribe').html('There was a problem').removeClass('success').addClass('error');
+                        /* Show Stripe errors on the form */
+                        $form.find('.payment-errors').text('Try refreshing the page and trying again.');
+                        $form.find('.payment-errors').closest('.row').show();
+                        p = $('<p class="bg-dager msg-striper"> Vui lòng thử lại </p>') 
+                        $('#show-message').html(p)
+                    } else {
+                        $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
+                        p = $('<p class="bg-success msg-striper"> Bạn đã đặt vé thành công </p>') 
+                        $('#show-message').html(p)
+                        
+                        setTimeout(() => {
+                            window.location.href = data.url
+                        }, 3000);
+                    }
+                    
                 })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    $form.find('.subscribe').html('There was a problem').removeClass('success').addClass('error');
-                    /* Show Stripe errors on the form */
-                    $form.find('.payment-errors').text('Try refreshing the page and trying again.');
-                    $form.find('.payment-errors').closest('.row').show();
-                });
         }
     });
 }

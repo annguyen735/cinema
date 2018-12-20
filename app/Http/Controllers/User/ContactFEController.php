@@ -34,10 +34,8 @@ class ContactFEController extends Controller
             "message" => $request->message
         ]);
         if ($result) {
-            $check = 4;
-            return redirect()->route('contact.index', compact('check'));
+            return redirect()->route('homepage', compact('check'));
         }
-        $check = 0;
         return redirect()->route('contact.index', compact('check'));
     }
 }
