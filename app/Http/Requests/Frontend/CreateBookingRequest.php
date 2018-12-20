@@ -24,7 +24,6 @@ class CreateBookingRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer|min:1',
             'schedule_id' => 'required|integer|min:1',
             'total' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',

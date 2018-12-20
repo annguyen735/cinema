@@ -141,7 +141,6 @@
 		$("#selected-seats li").each(function( index ) {
 			arrSeat.push($( this ).attr('id').slice(10,13));
 		});
-		userID = {{\Auth::user()->id}}
 		url = window.location.pathname;
 		scheduleID = url.split("/")[2];
 		total = $('#total').html();
@@ -154,7 +153,6 @@
 			url: urlRedirect,
 			type: "POST",
 			data: {
-				"user_id": userID,
 				"schedule_id": scheduleID,
 				"seats": arrSeat,
 				"total": total,
@@ -163,7 +161,7 @@
 			success : function ($result) {
 				if ($result.code == 200) {
 					urlRedirect = "{{ route('films.payment') }}"
-					window.location.href = urlRedirect + '?seats=' + $result.seats + '&total=' + $result.total;
+					window.location.href = urlRedirect + '?seats=' + $result.seats + '&total=' + $result.total + '&bookingID=' + $result.booking_id;
 				}
 			},
 			error : function () {

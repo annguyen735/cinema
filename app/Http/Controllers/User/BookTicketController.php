@@ -82,6 +82,7 @@ class BookTicketController extends Controller
             }
         }
         $arrUnavailable = implode(",",$arrUnavailable);
+
         $film = Film::where("id", $schedule->film_id)->first();
         return view("frontend.booking.index", ["seatUnavailable" => $arrUnavailable, "film" => $film, "roomID" => $schedule->room_id ]);
     }
@@ -124,7 +125,31 @@ class BookTicketController extends Controller
                     "source" => $request->token, // obtained with Stripe.js
                     "description" => "Booking ticket payment." 
             ) );
-            return response()->json(['data' => $payment]);
+            if ($payment) {
+                $result = Borrowing::where('id', $request->booking)->update([
+                    "status" => 1
+                ]);
+                if($result) {
+                    DetailBorrowing::where('borrowing_id', $request->booking)->update([
+                        "is_finish" => 1, 
+                    ]);
+                    
+                    $details = DetailBorrowing::where('borrowing_id', $request->booking)->get();
+
+                    foreach($details as $detail) {
+                        Seat::where('id', $detail->seat_id)->update([
+                            'status' => 0
+                        ]);
+                    }
+                    $seat = Seat::where('id', $details->first()->seat_id)->first();
+                    $count = Seat::where("room_id", $seat->room_id)->where("status", 1)->count();
+                    $room = Room::findOrFail($seat->room_id)->update([
+                        "seats_available" => $count
+                    ]);
+                }
+            }
+            $url = route('homepage');
+            return response()->json(['data' => $payment, 'url' => $url]);
         } catch ( \Exception $e ) {
             return response()->json(['code' => 500]);
         }
@@ -138,9 +163,16 @@ class BookTicketController extends Controller
      */
     public function store(CreateBookingRequest $request)
     {
+
+        $userID = null;
+        $total = $request->total;
+        if (\Auth::check()) {
+            $userID = \Auth::user()->id;
+            $request->total = $request->total/60000 * 45000;
+        }
         try {
             $booking = Borrowing::create([
-                'user_id' => $request->user_id,
+                'user_id' => $userID,
                 'schedule_id' => $request->schedule_id,
                 'total_price' => $request->total,
                 'status' => 0,
@@ -244,7 +276,7 @@ class BookTicketController extends Controller
                         }
                     } 
             }
-            return response()->json(['code' => 200, 'seats' => implode(", ",$request->seats), 'total' => $request->total]);
+            return response()->json(['code' => 200, 'seats' => implode(", ",$request->seats), 'total' => $request->total, 'booking_id' => $booking->id]);
         } catch (QueryException $e) {
             return response()->json(['code' => 500]);
         } catch (\Exception $e) {
