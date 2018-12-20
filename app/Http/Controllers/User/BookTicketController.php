@@ -133,9 +133,23 @@ class BookTicketController extends Controller
                     DetailBorrowing::where('borrowing_id', $request->booking)->update([
                         "is_finish" => 1, 
                     ]);
+                    
+                    $details = DetailBorrowing::where('borrowing_id', $request->booking)->get();
+
+                    foreach($details as $detail) {
+                        Seat::where('id', $detail->seat_id)->update([
+                            'status' => 0
+                        ]);
+                    }
+                    $seat = Seat::where('id', $details->first()->seat_id)->first();
+                    $count = Seat::where("room_id", $seat->room_id)->where("status", 1)->count();
+                    $room = Room::findOrFail($seat->room_id)->update([
+                        "seats_available" => $count
+                    ]);
                 }
             }
-            return response()->json(['data' => $payment]);
+            $url = route('homepage');
+            return response()->json(['data' => $payment, 'url' => $url]);
         } catch ( \Exception $e ) {
             return response()->json(['code' => 500]);
         }

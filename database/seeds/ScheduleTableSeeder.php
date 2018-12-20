@@ -24,7 +24,7 @@ class ScheduleTableSeeder extends Seeder
         $time_finish = ['10:30', '12:45', '17:00', '19:15', '21:30'];
 
         $cityIds = [9, 15, 24, 25, 55, 56];        
-        $filmIds = Film::select("id")->whereBetween('id', [1, 12])->get();
+        $filmIds = Film::select("id")->whereBetween('id', [1, 11])->get();
         
         $cinemaIds = Cinema::select("id")->whereIn("city_id", $cityIds)->get();
         foreach ($cinemaIds as $cinemaId) {
