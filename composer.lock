@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdae1913dc2798f7d7c4264c398c33ab",
+    "content-hash": "804c9488821d829d7125a26c83be3f13",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2091,61 +2091,6 @@
             "time": "2018-01-20T00:28:24+00:00"
         },
         {
-            "name": "stripe/stripe-php",
-            "version": "v6.24.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "e608b6538b45d233db66838c389c6548c1152a27"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e608b6538b45d233db66838c389c6548c1152a27",
-                "reference": "e608b6538b45d233db66838c389c6548c1152a27",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "1.*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Stripe\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stripe and contributors",
-                    "homepage": "https://github.com/stripe/stripe-php/contributors"
-                }
-            ],
-            "description": "Stripe PHP Library",
-            "homepage": "https://stripe.com/",
-            "keywords": [
-                "api",
-                "payment processing",
-                "stripe"
-            ],
-            "time": "2018-11-28T16:32:29+00:00"
-        },
-        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.0.2",
             "source": {
@@ -3223,60 +3168,6 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
-        },
-        {
-            "name": "unisharp/laravel-ckeditor",
-            "version": "4.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/UniSharp/laravel-ckeditor.git",
-                "reference": "5c75f3f9128ec8567955913074795deee5869c5c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-ckeditor/zipball/5c75f3f9128ec8567955913074795deee5869c5c",
-                "reference": "5c75f3f9128ec8567955913074795deee5869c5c",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Unisharp\\Ckeditor\\": "./"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+",
-                "LGPL-2.1+",
-                "MPL-1.1+"
-            ],
-            "authors": [
-                {
-                    "name": "CKSource",
-                    "homepage": "http://cksource.com"
-                },
-                {
-                    "name": "UniSharp Ltd. (Composer Package Maintainer)",
-                    "homepage": "http://www.unisharp.com"
-                }
-            ],
-            "description": "JavaScript WYSIWYG web text editor (for laravel).",
-            "homepage": "http://ckeditor.com",
-            "keywords": [
-                "CKEditor",
-                "editor",
-                "fckeditor",
-                "html",
-                "javascript",
-                "laravel",
-                "richtext",
-                "text",
-                "wysiwyg"
-            ],
-            "time": "2017-11-01T04:33:40+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
