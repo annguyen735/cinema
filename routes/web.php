@@ -43,6 +43,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adm
     Route::resource('/rooms', 'RoomController');
     Route::get('/rooms/{cinema_id}/listRoom', "RoomController@listRoomByCinemaID");
 
+    Route::get('/bookings', 'BookingController@index')->name('bookings.index');
+    Route::get('/bookings/export', 'BookingController@export')->name('bookings.export');
+
     
 });
 
