@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Film;
+use App\Models\Comment;
+use App\Models\Schedule;
 use Illuminate\Database\Seeder;
 
 class FilmTableSeeder extends Seeder
@@ -12,8 +14,10 @@ class FilmTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 20; $i++) {
-            factory(Film::class, 1)->create();
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Film::truncate();
+        Schedule::truncate();
+        Comment::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
