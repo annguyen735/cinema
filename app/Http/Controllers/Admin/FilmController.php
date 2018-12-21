@@ -68,6 +68,7 @@ class FilmController extends Controller
                 'video_url' => $videoURL,
                 'avg_rating' => 0.00,
                 'total_rating' => 0,
+                'content' => $request->content,
                 'is_active' => Film::IS_ACTIVE
             ]);
             $check = 1;

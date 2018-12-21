@@ -37,11 +37,7 @@
 						<p class="info" style="font-size: 2em;">Thời lượng:&nbsp; &nbsp; {{$film->time_limit}} minutes</p>
 						
 						@include("frontend.details.partials.booking-ticket")
-						@if (\Auth::check())
 						<a href="#booking-ticket" class="book book-ticket" data-toggle="modal" style="width:35%"><i class="book book-ticket"></i>Đặt vé</a>
-						@else 
-						<a href="{{ route('login') }}" class="btn btn-danger">Bạn phải đăng nhập mới có thể đặt vé</a>
-						@endif
 					</div>
 					<div class="clearfix"></div>
 				</div>

@@ -61,6 +61,7 @@ Route::group(['namespace' => 'User'], function () {
     Route::get("/films/{id_schedule}/booking", "BookTicketController@booking")->name("films.booking");
     Route::get("/payment/booking", "BookTicketController@payment")->name("films.payment");
     Route::post("/films/{user_id}/{id_schedule}/booking", "BookTicketController@createBooking")->name("films.createBooking");
+    Route::post("/films/booking/store", "BookTicketController@store")->name("films.booking.store");
 
     Route::get("/cities/available", "CityController@showCityHaveCinema")->name("cities.available");
 
@@ -69,4 +70,6 @@ Route::group(['namespace' => 'User'], function () {
     Route::get("/schedules", "ScheduleController@index")->name("scheduleFE.index");
 
     Route::resource("/comments", "CommentController");
+
+    Route::post ('/account/stripe_card_token', 'BookTicketController@striperCard')->name('striper.card');
 });

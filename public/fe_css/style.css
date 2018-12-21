@@ -73,7 +73,7 @@ label{
 }
 .header-info-form{
 	float:right;
-	padding-top:4em;
+	/* padding-top:4em; */
 	width:60%;
 }
 .header-info-form .card {
@@ -2356,4 +2356,11 @@ clear: both;
 .video-dialog {
 	width: 70em;
     margin: auto;
+}
+
+.msg-striper {
+	margin: 2em;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 2em;
 }

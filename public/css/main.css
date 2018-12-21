@@ -28,9 +28,8 @@
 }
 
 .img-schedule {
-    width: 200px;
-    height: 150px;
-    margin-left:20%;
+    width: 8em;
+    margin: auto 30%;
 }
 .timeline-schedule {
     margin-top: 5px;
